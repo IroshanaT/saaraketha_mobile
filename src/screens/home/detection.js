@@ -19,8 +19,8 @@ const Home = () => {
       source={require("../../../assets/bg3.png")}
       style={styles.landing}
     >
-       <View style={{ marginLeft: 20,marginTop:10 }}>
-        <Text style={{ fontSize: 18, fontFamily: FontFamily.urbanistSemibold,}}>Dash Board</Text>
+      <View style={{ marginLeft: 20,marginTop:10 }}>
+        <Text style={{ fontSize: 18, fontFamily: FontFamily.urbanistSemibold,}}>Disease Detection</Text>
       </View>
       <View style={[styles.group]}>
         <Pressable onPress={() => navigation.navigate("Home")}>
@@ -32,10 +32,10 @@ const Home = () => {
           <Image
             style={[styles.groupItem, styles.groupPosition]}
             resizeMode="cover"
-            source={require("../../../assets/g3.png")}
+            source={require("../../../assets/g7.png")}
           />
           <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
-            Disease Detection
+          Real-time Disease Identification
           </Text>
         </Pressable>
 
@@ -51,10 +51,10 @@ const Home = () => {
           <Image
             style={[styles.groupItem, styles.groupPosition]}
             resizeMode="cover"
-            source={require("../../../assets/g4.png")}
+            source={require("../../../assets/g8.png")}
           />
           <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
-          Location Tracker
+          Upload Image
           </Text>
         </Pressable>
 
@@ -70,10 +70,10 @@ const Home = () => {
           <Image
             style={[styles.groupItem, styles.groupPosition]}
             resizeMode="cover"
-            source={require("../../../assets/g2.png")}
+            source={require("../../../assets/g9.png")}
           />
           <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
-          Rice Variety Selection
+          Upload Video
           </Text>
         </Pressable>
 
@@ -89,42 +89,14 @@ const Home = () => {
           <Image
             style={[styles.groupItem, styles.groupPosition]}
             resizeMode="cover"
-            source={require("../../../assets/g1.png")}
+            source={require("../../../assets/g6.png")}
           />
           <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
-          Crowd Source
+          History
           </Text>
         </Pressable>
 
-        <View style={[styles.featuredTag, styles.tagLayout]}>
-          <View style={styles.rectangleViewShadowBox} />
-          <Text style={[styles.key, styles.keyTypo]}>What’s New</Text>
-          <Text style={[styles.key1, styles.keyPosition]}>
-            View Saaraketha's upcoming exciting features!
-          </Text>
-          <View style={[styles.featuredTagItem, styles.groupChild2Layout]} />
-          <Text style={[styles.text, styles.keyTypo]}>⚡️</Text>
-        </View>
-
-        <View style={[styles.featuredTag, styles.tagLayout, styles.mg]}>
-          <View style={styles.rectangleViewShadowBox} />
-          <Text style={[styles.key, styles.keyTypo]}>Upgrade to pro</Text>
-          <Text style={[styles.key1, styles.keyPosition]}>
-            Experience Saaraketha's premium features!
-          </Text>
-          <View style={[styles.rectangleParent3, styles.groupChild2Layout]}>
-            <LinearGradient
-              style={[styles.groupChild2, styles.groupChild2Layout]}
-              locations={[0.01, 1]}
-              colors={["#5ebc00", "#bbff4d"]}
-            />
-            <Image
-              style={{ width: 20, height: 30, marginLeft: 5}}
-              resizeMode="cover"
-              source={require("../../../assets/g5.png")}
-            />
-          </View>
-        </View>
+    
       </View>
     </ImageBackground>
   );
@@ -159,8 +131,9 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   groupItem: {
-    width: 28,
-    height: 28,
+    width: 29,
+     height: 26
+
   },
   groupChild: {
     backgroundColor: "transparent",
@@ -175,7 +148,7 @@ const styles = StyleSheet.create({
   },
   group: {
     marginLeft: 20,
-    marginTop: 70,
+    marginTop: 100,
     position: "absolute",
   },
   groupView: {

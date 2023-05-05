@@ -2,6 +2,7 @@ import MainContainer from "./src/navigator";
 import { useFonts } from "expo-font"; 
 import { AuthProvider } from "./src/contexts/auth";
 import 'react-native-gesture-handler';
+
 export default function App() {
   const [fontsLoaded, error] = useFonts({
     Urbanist_regular: require("./assets/fonts/Urbanist_regular.ttf"),

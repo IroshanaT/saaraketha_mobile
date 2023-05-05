@@ -12,6 +12,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigation } from "@react-navigation/core";
 import { LinearGradient } from "expo-linear-gradient";
 import { FontFamily, Color, FontSize, Border } from "../../../GlobalStyles";
+
 //login
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -28,10 +29,10 @@ const LoginScreen = () => {
     } else {
       try {
         signInWithEmailAndPassword(auth, email, password)
-          .then((userCredentials) => {
-            navigation.replace("Main")
+          .then(() => {
+            navigation.replace("Initial")
           })
-          .catch((error) => setError("No User"));
+          .catch(() => setError("No User"));
       } catch (error) {
         setError("error message");
       }
