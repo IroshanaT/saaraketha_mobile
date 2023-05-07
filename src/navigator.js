@@ -11,7 +11,9 @@ import LoginScreen from "./screens/auth/login";
 import RegScreen from "./screens/auth/reg";
 import LandingScreen from "./screens/start/landing";
 import Home from "./screens/home/home";
-import Detection from "./screens/home/detection"
+import Detection from "./screens/home/detection";
+import Upload from "./screens/upload/imageHome";
+import Aerial from "./screens/upload/aerial";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -29,15 +31,13 @@ export default function MainContainer() {
     return (
       <Tab.Navigator
         screenOptions={({ route }) => ({
-
-
-          tabBarStyle:{
+          tabBarStyle: {
             backgroundColor: "#ffffff",
-            shadowColor:"black",
-            height:55,
+            shadowColor: "black",
+            height: 55,
           },
 
-           tabBarShowLabel:false,
+          tabBarShowLabel: false,
           tabBarIcon: ({ color, size }) => {
             let iconName;
 
@@ -45,19 +45,18 @@ export default function MainContainer() {
               iconName = "home";
             } else if (route.name === "Settings") {
               iconName = "bar-chart";
-            }else if (route.name === "Detection") {
+            } else if (route.name === "Detection") {
               iconName = "md-scan-circle";
-            }else if (route.name === "dd") {
+            } else if (route.name === "dd") {
               iconName = "leaf";
-            }else if (route.name === "ee") {
+            } else if (route.name === "ee") {
               iconName = "people-circle";
             }
 
-            return <Ionicons name={iconName} size={32} color={color}  />;
+            return <Ionicons name={iconName} size={32} color={color} />;
           },
           tabBarActiveTintColor: "#86cc29",
           tabBarInactiveTintColor: "black",
-     
         })}
       >
         <Tab.Screen
@@ -80,7 +79,7 @@ export default function MainContainer() {
           component={Home}
           options={{ headerShown: false }}
         />
-         <Tab.Screen
+        <Tab.Screen
           name={"ee"}
           component={Home}
           options={{ headerShown: false }}
@@ -98,15 +97,73 @@ export default function MainContainer() {
           options={({}) => ({
             headerStyle: { backgroundColor: "#96E42E" },
             headerTitle: () => {},
-            headerRight: () => (
-              <Avatar
-                source={{
-                  uri: pic ? pic : "https://picsum.photos/seed/picsum/200/300",
-                }}
-                rounded
-                size={40}
-              />
-            ),
+            headerRight: () =>
+              pic ? (
+                <Avatar
+                  source={{
+                    uri: pic,
+                  }}
+                  rounded
+                  size={40}
+                />
+              ) : (
+                <Avatar
+                  source={require("../assets/profile.png")}
+                  rounded
+                  size={40}
+                />
+              ),
+            headerRightContainerStyle: { marginRight: 2 },
+          })}
+        />
+
+        <Drawer.Screen
+          name={"Upload"}
+          component={Upload}
+          options={({}) => ({
+            headerStyle: { backgroundColor: "#96E42E" },
+            headerTitle: () => {},
+            headerRight: () =>
+              pic ? (
+                <Avatar
+                  source={{
+                    uri: pic,
+                  }}
+                  rounded
+                  size={40}
+                />
+              ) : (
+                <Avatar
+                  source={require("../assets/profile.png")}
+                  rounded
+                  size={40}
+                />
+              ),
+            headerRightContainerStyle: { marginRight: 2 },
+          })}
+        />
+        <Drawer.Screen
+          name={"Aerial"}
+          component={Aerial}
+          options={({}) => ({
+            headerStyle: { backgroundColor: "#96E42E" },
+            headerTitle: () => {},
+            headerRight: () =>
+              pic ? (
+                <Avatar
+                  source={{
+                    uri: pic,
+                  }}
+                  rounded
+                  size={40}
+                />
+              ) : (
+                <Avatar
+                  source={require("../assets/profile.png")}
+                  rounded
+                  size={40}
+                />
+              ),
             headerRightContainerStyle: { marginRight: 2 },
           })}
         />
