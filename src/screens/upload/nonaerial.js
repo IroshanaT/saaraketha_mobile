@@ -14,17 +14,15 @@ import { Dialog, Portal, Provider, Avatar, Title } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import axios from "axios";
-import { useNavigation } from "@react-navigation/core";
 
-const Aerial = () => {
+const NonAerial = () => {
   const bottomSheetRef = useRef(null);
-  const navigation = useNavigation();
   const [visible, setVisible] = useState(false);
   const showDialog = () => setVisible(true);
   const hideDialog = () => setVisible(false);
   const [photo, setPhoto] = useState(null);
-  const [err, setErr] = useState("");
   const [photoShow, setPhotoShow] = useState(null);
+  const [err, setErr] = useState("");
 
   const gallery = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -71,16 +69,16 @@ const Aerial = () => {
     formData.append("file", { uri: photoShow, name: filename, type });
 
     await axios
-      .post("http://127.0.0.1:5000/areial", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then((res) => {
-      
-        navigation.navigate("Save", { url:photoShow,pred:res.data.result})
-      })
-      .catch((err) => {
-        setErr("Error")
-      });
+    .post("http://127.0.0.1:5000/nonareial", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+    .then((res) => {
+    
+      navigation.navigate("Save", { url:photoShow,pred:res.data.result})
+    })
+    .catch((err) => {
+      setErr("Error")
+    });
   };
 
   return (
@@ -99,7 +97,7 @@ const Aerial = () => {
                     fontFamily: FontFamily.urbanistSemibold,
                   }}
                 >
-                  Upload Aerial Image
+                  Upload Non Aerial Image
                 </Text>
               </View>
 
@@ -110,7 +108,7 @@ const Aerial = () => {
                     fontFamily: FontFamily.urbanistSemibold,
                   }}
                 >
-                  What is Aerial Image ?
+                  What is Non Aerial Image ?
                 </Text>
                 <Text
                   style={{
@@ -120,8 +118,7 @@ const Aerial = () => {
                     textAlign: "left",
                   }}
                 >
-                  Aerial photography typically refers specially to bird’s-eye
-                  view images that focus on landscapes and surface objects
+                  This is the opposite version of the aerial images. The non - aerial images would be ground - level images. Then any ground level image belong to this category 
                 </Text>
               </View>
 
@@ -144,7 +141,7 @@ const Aerial = () => {
                     fontFamily: FontFamily.urbanistSemibold,
                   }}
                 >
-                  How to Capture Aerial Image in Rice Plants ?
+                  How to Capture Non Aerial Image in Rice Plants ?
                 </Text>
                 <Text
                   style={{
@@ -154,8 +151,7 @@ const Aerial = () => {
                     textAlign: "left",
                   }}
                 >
-                  Hold the phone over the rice plants as shown in the image and
-                  take a photo
+                 To capture a non-aerial image of a leaf, you will need a camera or smartphone and a flat surface to place the leaf on. Here are the steps to follow:
                 </Text>
               </View>
               <Image
@@ -243,7 +239,7 @@ const Aerial = () => {
                             textAlign: "center",
                           }}
                         >
-                          Upload Only the Aerial Images
+                          Upload Only the Non Aerial Images
                         </Title>
                         <View style={styles.contentGp}>
                           <Pressable style={styles.press} onPress={camera}>
@@ -261,7 +257,7 @@ const Aerial = () => {
                                 styles.ravinduTypo,
                               ]}
                             >
-                              Capture Aerial Image
+                              Capture Non Aerial Image
                             </Text>
                           </Pressable>
 
@@ -281,7 +277,7 @@ const Aerial = () => {
                                 styles.ravinduTypo,
                               ]}
                             >
-                              Upload Aerial Image
+                              Upload Non Aerial Image
                             </Text>
                           </Pressable>
                           <Pressable style={styles.press4} onPress={hideDialog}>
@@ -445,4 +441,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Aerial;
+export default NonAerial;

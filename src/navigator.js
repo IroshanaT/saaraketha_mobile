@@ -14,6 +14,8 @@ import Home from "./screens/home/home";
 import Detection from "./screens/home/detection";
 import Upload from "./screens/upload/imageHome";
 import Aerial from "./screens/upload/aerial";
+import NonAerial from "./screens/upload/nonaerial";
+import Save from "./screens/upload/save";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -145,6 +147,56 @@ export default function MainContainer() {
         <Drawer.Screen
           name={"Aerial"}
           component={Aerial}
+          options={({}) => ({
+            headerStyle: { backgroundColor: "#96E42E" },
+            headerTitle: () => {},
+            headerRight: () =>
+              pic ? (
+                <Avatar
+                  source={{
+                    uri: pic,
+                  }}
+                  rounded
+                  size={40}
+                />
+              ) : (
+                <Avatar
+                  source={require("../assets/profile.png")}
+                  rounded
+                  size={40}
+                />
+              ),
+            headerRightContainerStyle: { marginRight: 2 },
+          })}
+        />
+        <Drawer.Screen
+          name={"NonAerial"}
+          component={NonAerial}
+          options={({}) => ({
+            headerStyle: { backgroundColor: "#96E42E" },
+            headerTitle: () => {},
+            headerRight: () =>
+              pic ? (
+                <Avatar
+                  source={{
+                    uri: pic,
+                  }}
+                  rounded
+                  size={40}
+                />
+              ) : (
+                <Avatar
+                  source={require("../assets/profile.png")}
+                  rounded
+                  size={40}
+                />
+              ),
+            headerRightContainerStyle: { marginRight: 2 },
+          })}
+        />
+         <Drawer.Screen
+          name={"Save"}
+          component={Save}
           options={({}) => ({
             headerStyle: { backgroundColor: "#96E42E" },
             headerTitle: () => {},

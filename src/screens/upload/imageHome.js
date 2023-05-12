@@ -58,7 +58,7 @@ const ImaageUpload = () => {
 
             <Pressable
               style={styles.press2}
-              onPress={() => navigation.navigate("Detection")}
+              onPress={() => navigation.navigate("NonAerial")}
             >
               <LinearGradient
                 style={[styles.groupChild, styles.groupParentLayout]}
