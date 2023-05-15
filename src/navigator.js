@@ -19,6 +19,12 @@ import Save from "./screens/upload/save";
 import ViewAll from "./screens/upload/viewAll";
 import View from "./screens/upload/view";
 
+import Map from "./screens/locations/map";
+import HeatMap from "./screens/locations/heatmapview";
+
+import RealTimeHome from "./screens/upload/realTimeDetectionHome";
+import RealTimeDevice from "./screens/upload/realTimeDevice";
+
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
@@ -248,7 +254,7 @@ export default function MainContainer() {
           })}
         />
 
-<Drawer.Screen
+        <Drawer.Screen
           name={"View"}
           component={View}
           options={({}) => ({
@@ -298,6 +304,38 @@ export default function MainContainer() {
         <Stack.Screen
           name={"Initial"}
           component={Main}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name={"Map"}
+          component={Map}
+          options={{
+            title: "Disease Locations",
+            headerStyle: {
+              backgroundColor: "#bbff4d",
+            },
+            headerTintColor: "#000",
+          }}
+        />
+        <Stack.Screen
+          name={"HeatMap"}
+          component={HeatMap}
+          options={{
+            title: "Heat Map",
+            headerStyle: {
+              backgroundColor: "#bbff4d",
+            },
+            headerTintColor: "#000",
+          }}
+        />
+        <Stack.Screen
+          name={"RealTimeHome"}
+          component={RealTimeHome}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name={"realTimeDevice"}
+          component={RealTimeDevice}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

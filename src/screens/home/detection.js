@@ -11,7 +11,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/core";
 import { FontFamily, FontSize, Color, Border } from "../../../GlobalStyles";
 
-const Detection= () => {
+const Detection = () => {
   const navigation = useNavigation();
 
   return (
@@ -19,11 +19,13 @@ const Detection= () => {
       source={require("../../../assets/bg3.png")}
       style={styles.landing}
     >
-      <View style={{ marginLeft: 20,marginTop:10 }}>
-        <Text style={{ fontSize: 18, fontFamily: FontFamily.urbanistSemibold,}}>Disease Detection</Text>
+      <View style={{ marginLeft: 20, marginTop: 10 }}>
+        <Text style={{ fontSize: 18, fontFamily: FontFamily.urbanistSemibold }}>
+          Disease Detection
+        </Text>
       </View>
       <View style={[styles.group]}>
-        <Pressable onPress={() => navigation.navigate("Home")}>
+        <Pressable onPress={() => navigation.navigate("RealTimeHome")}>
           <LinearGradient
             style={[styles.groupChild, styles.groupParentLayout]}
             locations={[0, 1]}
@@ -35,7 +37,7 @@ const Detection= () => {
             source={require("../../../assets/g7.png")}
           />
           <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
-          Real-time Disease Identification
+            Real-time Disease Identification
           </Text>
         </Pressable>
 
@@ -54,7 +56,7 @@ const Detection= () => {
             source={require("../../../assets/g8.png")}
           />
           <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
-          Upload Image
+            Upload Image
           </Text>
         </Pressable>
 
@@ -73,7 +75,7 @@ const Detection= () => {
             source={require("../../../assets/g9.png")}
           />
           <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
-          Upload Video
+            Upload Video
           </Text>
         </Pressable>
 
@@ -92,11 +94,9 @@ const Detection= () => {
             source={require("../../../assets/g6.png")}
           />
           <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
-          History
+            History
           </Text>
         </Pressable>
-
-    
       </View>
     </ImageBackground>
   );
@@ -132,8 +132,7 @@ const styles = StyleSheet.create({
   },
   groupItem: {
     width: 29,
-     height: 26
-
+    height: 26,
   },
   groupChild: {
     backgroundColor: "transparent",

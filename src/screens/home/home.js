@@ -19,8 +19,10 @@ const Home = () => {
       source={require("../../../assets/bg3.png")}
       style={styles.landing}
     >
-       <View style={{ marginLeft: 20,marginTop:10 }}>
-        <Text style={{ fontSize: 18, fontFamily: FontFamily.urbanistSemibold,}}>Dash Board</Text>
+      <View style={{ marginLeft: 20, marginTop: 10 }}>
+        <Text style={{ fontSize: 18, fontFamily: FontFamily.urbanistSemibold }}>
+          Dash Board
+        </Text>
       </View>
       <View style={[styles.group]}>
         <Pressable onPress={() => navigation.navigate("Detection")}>
@@ -41,7 +43,7 @@ const Home = () => {
 
         <Pressable
           style={[styles.groupView]}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => navigation.navigate("Map")}
         >
           <LinearGradient
             style={[styles.groupChild, styles.groupParentLayout]}
@@ -54,7 +56,7 @@ const Home = () => {
             source={require("../../../assets/g4.png")}
           />
           <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
-          Location Tracker
+            Location Tracker
           </Text>
         </Pressable>
 
@@ -73,7 +75,7 @@ const Home = () => {
             source={require("../../../assets/g2.png")}
           />
           <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
-          Rice Variety Selection
+            Rice Variety Selection
           </Text>
         </Pressable>
 
@@ -92,7 +94,7 @@ const Home = () => {
             source={require("../../../assets/g1.png")}
           />
           <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
-          Crowd Source
+            Crowd Source
           </Text>
         </Pressable>
 
@@ -119,7 +121,7 @@ const Home = () => {
               colors={["#5ebc00", "#bbff4d"]}
             />
             <Image
-              style={{ width: 20, height: 30, marginLeft: 5}}
+              style={{ width: 20, height: 30, marginLeft: 5 }}
               resizeMode="cover"
               source={require("../../../assets/g5.png")}
             />
