@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
+import React from "react";
 import {
   Image,
   StyleSheet,
@@ -23,7 +23,7 @@ const Home = () => {
         <Text style={{ fontSize: 18, fontFamily: FontFamily.urbanistSemibold,}}>Dash Board</Text>
       </View>
       <View style={[styles.group]}>
-        <Pressable onPress={() => navigation.navigate("Home")}>
+        <Pressable onPress={() => navigation.navigate("Detection")}>
           <LinearGradient
             style={[styles.groupChild, styles.groupParentLayout]}
             locations={[0, 1]}

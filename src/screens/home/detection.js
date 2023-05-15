@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
+import React from "react";
 import {
   Image,
   StyleSheet,
@@ -11,7 +11,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/core";
 import { FontFamily, FontSize, Color, Border } from "../../../GlobalStyles";
 
-const Home = () => {
+const Detection= () => {
   const navigation = useNavigation();
 
   return (
@@ -41,7 +41,7 @@ const Home = () => {
 
         <Pressable
           style={[styles.groupView]}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => navigation.navigate("Upload")}
         >
           <LinearGradient
             style={[styles.groupChild, styles.groupParentLayout]}
@@ -79,7 +79,7 @@ const Home = () => {
 
         <Pressable
           style={[styles.groupView]}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => navigation.navigate("ViewAll")}
         >
           <LinearGradient
             style={[styles.groupChild, styles.groupParentLayout]}
@@ -245,4 +245,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default Detection;

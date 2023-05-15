@@ -7,15 +7,15 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import { auth,storage,db} from "../../../firebase";
+import { auth, storage, db } from "../../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigation } from "@react-navigation/core";
 import { LinearGradient } from "expo-linear-gradient";
 import { FontFamily, Color, FontSize, Border } from "../../../GlobalStyles";
 import * as ImagePicker from "expo-image-picker";
-import { ref,uploadBytes, getDownloadURL } from "firebase/storage";
-import { doc,setDoc } from "firebase/firestore";
-
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { doc, setDoc } from "firebase/firestore";
+import { Avatar, Icon } from 'react-native-elements';
 //Registration
 const RegScreen = () => {
   const [email, setEmail] = useState("");
@@ -26,8 +26,6 @@ const RegScreen = () => {
   const [error, setError] = useState("");
   const [imageUri, setImageUri] = useState(null);
   const navigation = useNavigation();
-  
-
 
   const handleReg = async () => {
     if (email === "") {
@@ -46,20 +44,17 @@ const RegScreen = () => {
         createUserWithEmailAndPassword(auth, email, password)
           .then(async (userCredentials) => {
             try {
-            
               const userRef = doc(db, "user", userCredentials.user.uid);
               await setDoc(userRef, {
                 name: name,
                 email: email,
-                phone:phone,
-                imageUrl:downloadURL
+                phone: phone,
+                imageUrl: downloadURL,
               });
               navigation.replace("Login");
             } catch (error) {
               setError("Error");
             }
-           
-        
           })
           .catch((error) => setError("User could not create"));
       } catch (error) {
@@ -95,11 +90,9 @@ const RegScreen = () => {
   };
 
   const PasswordRe = (pass) => {
-    if (password === pass)
-    {
+    if (password === pass) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   };
@@ -118,28 +111,26 @@ const RegScreen = () => {
     setPassword(password);
   };
 
-
   const handleReChange = (password) => {
     setError("");
     setRePass(password);
   };
 
-
   const handleNameChange = (name) => {
     setError("");
-    setName(name)
+    setName(name);
   };
 
   const handlePhoneChange = (phone) => {
     setError("");
-    setPhone(phone)
+    setPhone(phone);
   };
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      aspect: [1, 1],
+      aspect: [4, 3],
       quality: 1,
     });
 
@@ -150,15 +141,28 @@ const RegScreen = () => {
 
   return (
     <View style={styles.container}>
-
-      <View style={styles.container1}>
+      <View style={styles.container1}> 
         <TouchableOpacity onPress={pickImage}>
           {imageUri ? (
-            <Image source={{ uri: imageUri }} style={styles.image} />
-          ) : (
-            <View style={styles.placeholder}>
-              <Text style={styles.placeholderText}>Pick an Image</Text>
+            <View style={styles.avatarContainer}>
+              <Avatar source={{ uri: imageUri }}  size={100} rounded />
+              <Icon
+                name="edit"
+                type="material"
+                color="#000"
+                containerStyle={styles.editIcon}
+              />
             </View>
+          ) : (
+            <View style={styles.avatarContainer}>
+            <Avatar source={{ uri: "https://picsum.photos/seed/picsum/200/300" }} size={100} rounded />
+            <Icon
+              name="edit"
+              type="material"
+              color="#000"
+              containerStyle={styles.editIcon}
+            />
+          </View>
           )}
         </TouchableOpacity>
       </View>
@@ -184,7 +188,6 @@ const RegScreen = () => {
             onChangeText={handleNameChange}
             value={name}
           />
-  
         </View>
         <View style={styles.formGroup}>
           <TextInput
@@ -218,9 +221,7 @@ const RegScreen = () => {
             value={repass}
           />
           {!PasswordRe(repass) && (
-            <Text style={styles.error}>
-              Password must match
-            </Text>
+            <Text style={styles.error}>Password must match</Text>
           )}
         </View>
 
@@ -255,12 +256,10 @@ const RegScreen = () => {
 };
 
 const styles = StyleSheet.create({
-
-
   container1: {
-    top:60,
-    alignItems: 'center',
-    justifyContent: 'center',
+    top: 90,
+    alignItems: "center",
+    justifyContent: "center",
   },
   image: {
     width: 140,
@@ -270,14 +269,14 @@ const styles = StyleSheet.create({
   placeholder: {
     width: 100,
     height: 100,
-    backgroundColor: '#cccccc',
+    backgroundColor: "#cccccc",
     borderRadius: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   placeholderText: {
     fontSize: 16,
-    color: '#ffffff',
+    color: "#ffffff",
   },
   container: {
     flex: 1,
@@ -286,7 +285,7 @@ const styles = StyleSheet.create({
 
   form: {
     width: "100%",
-    marginTop: 80,
+    marginTop: 120,
   },
   formGroup: {
     marginTop: 10,
@@ -351,6 +350,18 @@ const styles = StyleSheet.create({
     fontSize: FontSize.size_mini,
     fontWeight: "500",
     fontFamily: FontFamily.urbanistMedium,
+  },
+  avatarContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  editIcon: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    backgroundColor: '#fff',
+    borderRadius: 10,
   },
 });
 export default RegScreen;
