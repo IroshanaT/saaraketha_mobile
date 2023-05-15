@@ -1,5 +1,5 @@
 import BottomSheet from "@gorhom/bottom-sheet";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext,useEffect, useRef, useState } from "react";
 import {
   StyleSheet,
   ImageBackground,
@@ -13,10 +13,16 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Dialog, Portal, Provider, Avatar, Title } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/core";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { collection, doc, setDoc} from "firebase/firestore";
+import { storage, db } from "../../../firebase";
+import { AuthContext } from "../../contexts/auth";
+import RNHTMLtoPDF from 'react-native-html-to-pdf';
 
 const Save = ({ route }) => {
   const navigation = useNavigation();
   const { params } = route;
+  const { userId,uName} = useContext(AuthContext);
 
   useEffect(() => {
     if (params === undefined) {
@@ -41,7 +47,8 @@ const Save = ({ route }) => {
   const hideDialog = () => setVisible(false);
   const [photo, setPhoto] = useState("");
   const [predict, setPredict] = useState("");
-  
+  const [err, setErr] = useState("");
+  const [ur, setUr] = useState("");
 
   const TextArea = () => {
     if (predict === "ThripsDamage" || predict === "Thrips_damage") {
@@ -158,6 +165,85 @@ const Save = ({ route }) => {
     }
   };
 
+
+
+  const sv = async () => {
+    const response = await fetch(photo);
+    const blob = await response.blob();
+    const fileName = `disease/${Date.now()}.jpg`;
+    const fileRef = ref(storage, fileName);
+    await uploadBytes(fileRef, blob);
+    const downloadURL = await getDownloadURL(fileRef);
+    setUr(downloadURL)
+
+    try {
+
+      const subCollectionRef = collection(doc(db, 'prediction', userId), 'list');
+      const newDocRef = doc(subCollectionRef);
+      const newData = { name: uName, image: downloadURL,prediction:predict,date:new Date().getDate() };
+      await setDoc(newDocRef, newData);
+      hideDialog();
+    } catch (error) {
+      setErr("Error")
+    }
+
+
+
+
+
+  }
+
+
+
+  const generatePDF = async () => {
+
+    try {
+    
+      let options = {
+        html:`
+        <html>
+          <head>
+            <style>
+              body {
+                font-family: 'Helvetica';
+                font-size: 12px;
+              }
+              header, footer {
+                height: 50px;
+                background-color: #fff;
+                color: #000;
+                display: flex;
+                justify-content: center;
+                padding: 0 20px;
+              }
+             
+            </style>
+          </head>
+          <body>
+            <header>
+              <h1>Prediction</h1>
+            </header>
+            <h1>Prediction</h1>
+            <p>${predict}</p>
+            <img src=${ur} alt="pred" width="300" height="300">
+            <p>${new Date().getDate()}</p>
+           
+          </body>
+        </html>
+      `,
+      fileName: 'test',
+      directory: 'Documents',
+      };
+      const file = await RNHTMLtoPDF.convert(options);
+
+    } catch (error) {
+      console.log(error)
+      setErr("Error")
+    }
+  };
+
+
+
   return (
     <>
       <ImageBackground
@@ -189,6 +275,8 @@ const Save = ({ route }) => {
                 </Text>
               </View>
               {photo && (
+                <View>
+                  <Text style={styles.error}>{err}</Text> 
                 <Image
                   style={{
                     width: 352,
@@ -200,7 +288,9 @@ const Save = ({ route }) => {
                   resizeMode="cover"
                   source={{ uri: photo }}
                 />
+                </View>
               )}
+                   
               <TextArea />
               <Dialog
                 visible={visible}
@@ -227,7 +317,7 @@ const Save = ({ route }) => {
                         Save Details
                       </Title>
                       <View style={styles.contentGp}>
-                        <Pressable style={styles.press} onPress={showDialog}>
+                        <Pressable style={styles.press} onPress={sv}>
                           <LinearGradient
                             style={[
                               styles.groupChild,
@@ -247,7 +337,7 @@ const Save = ({ route }) => {
                           </Text>
                         </Pressable>
 
-                        <Pressable style={styles.press2} onPress={hideDialog}>
+                        <Pressable style={styles.press2} onPress={generatePDF}>
                           <LinearGradient
                             style={[
                               styles.groupChild,
@@ -401,6 +491,11 @@ const styles = StyleSheet.create({
   card: {
     marginTop: 1,
   },
+  error: {
+    color: "red",
+    marginTop: 5,
+    left: "18%",
+  }
 });
 
 export default Save;

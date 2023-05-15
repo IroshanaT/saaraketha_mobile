@@ -16,6 +16,8 @@ import Upload from "./screens/upload/imageHome";
 import Aerial from "./screens/upload/aerial";
 import NonAerial from "./screens/upload/nonaerial";
 import Save from "./screens/upload/save";
+import ViewAll from "./screens/upload/viewAll";
+import View from "./screens/upload/view";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -194,9 +196,61 @@ export default function MainContainer() {
             headerRightContainerStyle: { marginRight: 2 },
           })}
         />
-         <Drawer.Screen
+        <Drawer.Screen
           name={"Save"}
           component={Save}
+          options={({}) => ({
+            headerStyle: { backgroundColor: "#96E42E" },
+            headerTitle: () => {},
+            headerRight: () =>
+              pic ? (
+                <Avatar
+                  source={{
+                    uri: pic,
+                  }}
+                  rounded
+                  size={40}
+                />
+              ) : (
+                <Avatar
+                  source={require("../assets/profile.png")}
+                  rounded
+                  size={40}
+                />
+              ),
+            headerRightContainerStyle: { marginRight: 2 },
+          })}
+        />
+
+        <Drawer.Screen
+          name={"ViewAll"}
+          component={ViewAll}
+          options={({}) => ({
+            headerStyle: { backgroundColor: "#96E42E" },
+            headerTitle: () => {},
+            headerRight: () =>
+              pic ? (
+                <Avatar
+                  source={{
+                    uri: pic,
+                  }}
+                  rounded
+                  size={40}
+                />
+              ) : (
+                <Avatar
+                  source={require("../assets/profile.png")}
+                  rounded
+                  size={40}
+                />
+              ),
+            headerRightContainerStyle: { marginRight: 2 },
+          })}
+        />
+
+<Drawer.Screen
+          name={"View"}
+          component={View}
           options={({}) => ({
             headerStyle: { backgroundColor: "#96E42E" },
             headerTitle: () => {},

@@ -14,7 +14,7 @@ import { Dialog, Portal, Provider, Avatar, Title } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import axios from "axios";
-
+import { useNavigation } from "@react-navigation/core";
 const NonAerial = () => {
   const bottomSheetRef = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -23,7 +23,7 @@ const NonAerial = () => {
   const [photo, setPhoto] = useState(null);
   const [photoShow, setPhotoShow] = useState(null);
   const [err, setErr] = useState("");
-
+  const navigation = useNavigation();
   const gallery = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -73,10 +73,11 @@ const NonAerial = () => {
       headers: { "Content-Type": "multipart/form-data" },
     })
     .then((res) => {
-    
+      
       navigation.navigate("Save", { url:photoShow,pred:res.data.result})
     })
     .catch((err) => {
+      console.log(err)
       setErr("Error")
     });
   };
@@ -131,7 +132,7 @@ const NonAerial = () => {
                   marginTop: 5,
                 }}
                 resizeMode="cover"
-                source={require("../../../assets/area1.png")}
+                source={require("../../../assets/non1.png")}
               />
 
               <View style={{ marginLeft: 20, marginTop: 20, marginRight: 20 }}>
@@ -163,7 +164,7 @@ const NonAerial = () => {
                   marginTop: 5,
                 }}
                 resizeMode="cover"
-                source={require("../../../assets/area2.png")}
+                source={require("../../../assets/non2.png")}
               />
 
               <Dialog
@@ -294,7 +295,7 @@ const NonAerial = () => {
                               style={[
                                 styles.diseaseDetection,
                                 styles.ravinduTypo,
-                                { marginLeft: 50 },
+                                { marginLeft: 70 },
                                 { color: "white" },
                               ]}
                             >
@@ -413,7 +414,7 @@ const styles = StyleSheet.create({
   },
   diseaseDetection: {
     top: 16,
-    left: 30,
+    left: 10,
     textAlign: "center",
     color: Color.darkslategray_100,
   },

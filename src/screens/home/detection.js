@@ -79,7 +79,7 @@ const Detection= () => {
 
         <Pressable
           style={[styles.groupView]}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => navigation.navigate("ViewAll")}
         >
           <LinearGradient
             style={[styles.groupChild, styles.groupParentLayout]}
