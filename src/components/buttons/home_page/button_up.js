@@ -7,6 +7,7 @@ import { styles } from '../../../styles/style';
 const { width } = Dimensions.get('window');
 
 const Button_up = () => {
+  
   return (
     <Button
       icon={() => <MaterialCommunityIcons name="arrow-up-bold-box-outline" color="white" size={24} />}

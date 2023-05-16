@@ -19,18 +19,28 @@ import {
   collection,
   getDocs,
   doc,
-  deleteDoc,
+  getDoc,
   query,
-  orderBy,
+  where,
+  Timestamp,
+  addDoc,
 } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-const Map = () => {
+const Map = ({ route }) => {
+
+  const { status,InboxData } = route.params;
+
   const navigation = useNavigation();
+  const auth = getAuth();
 
   const [visible, setVisible] = useState(false);
   const [locations, setLocations] = useState([]);
   const [selecLocation, setSelecLocation] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [userID, setUserID] = useState("");
+  const [sparying, setSparying] = useState(false);
+
 
   const onpressfunction = (data) => {
     console.log(data.coordinate.latitude);
@@ -42,23 +52,86 @@ const Map = () => {
     setVisible(!visible);
   };
 
-  const fetchClass = async () => {
-    await getDocs(query(collection(db, "location"))).then((querySnapshot) => {
-      const newData = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        disease: doc.data().disease,
-        coordinate: doc.data().coordinate,
-        wind_speed: doc.data().wind_speed,
-      }));
-      setLocations(newData);
-    });
+  const fetchPoints = async () => {
+    if(status == "Inbox"){
+      await getDocs(
+        query(collection(db, "location"))
+      ).then((querySnapshot) => {
+        const newData = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          disease: doc.data().disease,
+          coordinate: doc.data().coordinate,
+          wind_speed: doc.data().wind_speed,
+        }));
+        setLocations(newData);
+      });
+    }else if(status == "Initial"){
+      if (userID != "") {
+        await getDocs(
+          query(collection(db, "location"), where("user_id", "==", userID))
+        ).then((querySnapshot) => {
+          const newData = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            disease: doc.data().disease,
+            coordinate: doc.data().coordinate,
+            wind_speed: doc.data().wind_speed,
+          }));
+          setLocations(newData);
+        });
+      }
+    }
+    
+  };
+
+  const shareLocation = async () => {
+    console.log(selecLocation);
+    if (userID != "") {
+
+      const docRef = doc(db, "user", userID);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const userDetails = docSnap.data();
+        const data = {
+          id: selecLocation.id,
+          disease: selecLocation.disease,
+          coordinate: selecLocation.coordinate,
+          wind_speed: selecLocation.wind_speed,
+          createdAt: Timestamp.fromDate(new Date()),
+          user_id: userID,
+          user_name: userDetails.name,
+          imageUrl: userDetails.imageUrl,
+        };
+
+        console.log(data);
+        const docRef = await addDoc(collection(db, "messages"), data);
+        if (docRef.id) {
+          console.log("Created Successfully");
+          navigation.navigate("Inbox");
+        } else {
+          console.log("Something went wrong. Try again");
+        }
+      } else {
+        console.log("No such document!");
+      }
+    }
   };
 
   useEffect(() => {
-    fetchClass().then(() => {
-      setLoading(false);
+    console.log(status,InboxData);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        setUserID(uid);
+        fetchPoints().then(() => {
+          setLoading(false);
+        });
+      }
     });
-  }, [loading]);
+  }, [loading, userID]);
+
+  // latitude: status == "Initial" ? locations[0].coordinate.latitude : InboxData.coordinate[0].latitude,
+  // longitude: status == "Initial" ? locations[0].coordinate.longitude : InboxData.coordinate[0].longitude,
 
   return (
     <ImageBackground
@@ -76,8 +149,11 @@ const Map = () => {
           style={styles.map}
           mapType={"hybrid"}
           initialRegion={{
-            latitude: 7.4867,
-            longitude: 80.3604,
+            // latitude: 7.4867,
+            // longitude: 80.3604,
+            latitude: status == "Initial" ?  7.4867 : InboxData.coordinate.latitude,
+            longitude: status == "Initial" ? 80.3604 : InboxData.coordinate.longitude,
+
             latitudeDelta: 0.0122,
             longitudeDelta: 0.0121,
           }}
@@ -103,7 +179,7 @@ const Map = () => {
           onBackButtonPress={toggleBottomNavigationView}
           onBackdropPress={toggleBottomNavigationView}
         >
-          <View style={[styles.bottomNavigationView, { height: "65%" }]}>
+          <View style={[styles.bottomNavigationView, { height: "73%" }]}>
             <MaterialCommunityIcons
               name="map-marker"
               size={60}
@@ -142,9 +218,27 @@ const Map = () => {
                   colors={["#5ebc00", "#bbff4d"]}
                 />
                 <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
-                  Calculate Dispersion
+                  Calculate Dispersionr
                 </Text>
               </Pressable>
+              <View style={{ marginTop: 20 }}>
+                <Pressable onPress={() => shareLocation()}>
+                  <LinearGradient
+                    style={[styles.groupChild, styles.groupParentLayout]}
+                    locations={[0, 1]}
+                    colors={["#000", "#222"]}
+                  />
+                  <Text
+                    style={[
+                      styles.diseaseDetection,
+                      styles.ravinduTypo,
+                      { color: "#fff" },
+                    ]}
+                  >
+                    Share
+                  </Text>
+                </Pressable>
+              </View>
               <View style={{ marginTop: 20 }}>
                 <Pressable
                   onPress={() =>

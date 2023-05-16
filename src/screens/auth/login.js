@@ -15,8 +15,8 @@ import { FontFamily, Color, FontSize, Border } from "../../../GlobalStyles";
 
 //login
 const LoginScreen = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("kr@gmail.com");
+  const [password, setPassword] = useState("1234krkr");
   const [error, setError] = useState("");
   const navigation = useNavigation();
 

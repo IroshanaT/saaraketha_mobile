@@ -21,6 +21,7 @@ import View from "./screens/upload/view";
 
 import Map from "./screens/locations/map";
 import HeatMap from "./screens/locations/heatmapview";
+import Inbox from "./screens/inbox/inbox";
 
 import RealTimeHome from "./screens/upload/realTimeDetectionHome";
 import RealTimeDevice from "./screens/upload/realTimeDevice";
@@ -91,7 +92,7 @@ export default function MainContainer() {
         />
         <Tab.Screen
           name={"ee"}
-          component={Home}
+          component={Inbox}
           options={{ headerShown: false }}
         />
       </Tab.Navigator>
@@ -337,6 +338,17 @@ export default function MainContainer() {
           name={"realTimeDevice"}
           component={RealTimeDevice}
           options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name={"Inbox"}
+          component={Inbox}
+          options={{
+            title: 'Messages',
+            headerStyle: {
+              backgroundColor: '#bbff4d',
+            },
+            headerTintColor: '#000',
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
