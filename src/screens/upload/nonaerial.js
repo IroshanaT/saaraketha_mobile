@@ -69,7 +69,7 @@ const NonAerial = () => {
     formData.append("file", { uri: photoShow, name: filename, type });
 
     await axios
-    .post("http://127.0.0.1:5000/nonareial", formData, {
+    .post("http://172.173.192.159/nonareial", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     })
     .then((res) => {
