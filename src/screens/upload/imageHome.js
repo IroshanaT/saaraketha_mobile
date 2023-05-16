@@ -6,6 +6,7 @@ import {
   Text,
   Image,
   Pressable,
+  TouchableOpacity
 } from "react-native";
 import { FontFamily, FontSize, Color, Border } from "../../../GlobalStyles";
 import { Avatar, Card, Title} from "react-native-paper";
@@ -37,7 +38,7 @@ const ImaageUpload = () => {
               Upload an Image to identify the disease
             </Title>
 
-            <Pressable
+            <TouchableOpacity
               style={styles.press}
               onPress={() => navigation.navigate("Aerial")}
             >
@@ -54,9 +55,9 @@ const ImaageUpload = () => {
               <Text style={[styles.diseaseDetection, styles.ravinduTypo,{marginLeft:10}]}>
                  Aerial Image
               </Text>
-            </Pressable>
+            </TouchableOpacity>
 
-            <Pressable
+            <TouchableOpacity
               style={styles.press2}
               onPress={() => navigation.navigate("NonAerial")}
             >
@@ -73,7 +74,7 @@ const ImaageUpload = () => {
               <Text style={[styles.diseaseDetection, styles.ravinduTypo,{color:"white"}]}>
                  Non-aerial Image
               </Text>
-            </Pressable>
+            </TouchableOpacity>
           </Card.Content>
         </Card>
       </View>

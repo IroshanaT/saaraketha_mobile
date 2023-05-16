@@ -7,6 +7,7 @@ import {
   Pressable,
   View,
   Image,
+  TouchableOpacity
 } from "react-native";
 import { FontFamily, FontSize, Color, Border } from "../../../GlobalStyles";
 import { LinearGradient } from "expo-linear-gradient";
@@ -184,7 +185,7 @@ const Aerial = () => {
                           source={{ uri: photoShow }}
                           style={{ width: 200, height: 200, left: 50 }}
                         />
-                        <Pressable style={styles.press2} onPress={predict}>
+                        <TouchableOpacity style={styles.press2} onPress={predict}>
                           <LinearGradient
                             style={[
                               styles.groupChild,
@@ -204,8 +205,8 @@ const Aerial = () => {
                           >
                             Predict
                           </Text>
-                        </Pressable>
-                        <Pressable style={styles.press4} onPress={dicardImage}>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.press4} onPress={dicardImage}>
                           <LinearGradient
                             style={[
                               styles.groupChild,
@@ -227,7 +228,7 @@ const Aerial = () => {
                           >
                             Re-Take Image
                           </Text>
-                        </Pressable>
+                        </TouchableOpacity>
                       </View>
                     )
                   ) : (
@@ -246,7 +247,7 @@ const Aerial = () => {
                           Upload Only the Aerial Images
                         </Title>
                         <View style={styles.contentGp}>
-                          <Pressable style={styles.press} onPress={camera}>
+                          <TouchableOpacity style={styles.press} onPress={camera}>
                             <LinearGradient
                               style={[
                                 styles.groupChild,
@@ -263,9 +264,9 @@ const Aerial = () => {
                             >
                               Capture Aerial Image
                             </Text>
-                          </Pressable>
+                          </TouchableOpacity>
 
-                          <Pressable style={styles.press2} onPress={gallery}>
+                          <TouchableOpacity style={styles.press2} onPress={gallery}>
                             <LinearGradient
                               style={[
                                 styles.groupChild,
@@ -283,8 +284,8 @@ const Aerial = () => {
                             >
                               Upload Aerial Image
                             </Text>
-                          </Pressable>
-                          <Pressable style={styles.press4} onPress={hideDialog}>
+                          </TouchableOpacity>
+                          <TouchableOpacity style={styles.press4} onPress={hideDialog}>
                             <LinearGradient
                               style={[
                                 styles.groupChild,
@@ -304,7 +305,7 @@ const Aerial = () => {
                             >
                               Cancel
                             </Text>
-                          </Pressable>
+                          </TouchableOpacity>
                         </View>
                       </View>
                     </View>
@@ -322,7 +323,7 @@ const Aerial = () => {
         borderRadius={100}
         handleIndicatorStyle={{ backgroundColor: "#96E42E" }}
       >
-        <Pressable style={styles.press3} onPress={showDialog}>
+        <TouchableOpacity style={styles.press3} onPress={showDialog}>
           <LinearGradient
             style={[styles.groupChild1, styles.groupParentLayout1]}
             locations={[0, 1]}
@@ -338,7 +339,7 @@ const Aerial = () => {
           >
             Start Diagnosing
           </Text>
-        </Pressable>
+        </TouchableOpacity>
       </BottomSheet>
     </>
   );

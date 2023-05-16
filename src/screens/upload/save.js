@@ -7,6 +7,8 @@ import {
   Pressable,
   View,
   Image,
+  ScrollView,
+  TouchableOpacity
 } from "react-native";
 import { FontFamily, FontSize, Color, Border } from "../../../GlobalStyles";
 import { LinearGradient } from "expo-linear-gradient";
@@ -51,9 +53,9 @@ const Save = ({ route }) => {
   const [ur, setUr] = useState("");
 
   const TextArea = () => {
-    if (predict === "ThripsDamage" || predict === "Thrips_damage") {
+    if (predict === "ThripsDamage" || predict === "Thrips_damage" || predict === "Thrips_damage\n" ||  predict ===  "ThripsDamage\n") {
       return (
-        <View style={{ marginLeft: 130, marginTop: 30, marginRight: 20 }}>
+        <View style={{marginLeft:20,marginTop: 30, marginRight: 20 }}>
           <Text
             style={{
               fontSize: 17,
@@ -78,30 +80,12 @@ const Save = ({ route }) => {
             areas with low soil moisture, frequent and prolonged periods or rain
             shower,and cool temperature in the daytime.
           </Text>
-          <Text
-            style={{
-              fontSize: 15,
-              fontFamily: FontFamily.urbanistSemibold,
-            }}
-          >
-            Symptoms
-          </Text>
-          <Text
-            style={{
-              fontSize: 15,
-              fontFamily: FontFamily.urbanistMedium,
-              marginTop: 10,
-              textAlign: "left",
-            }}
-          >
-            initial symptoms appear as white to gray-green lesions or spots,
-            with dark green border
-          </Text>
+          
         </View>
       );
-    } else if (predict === "rice_blast"|| predict === "RiceBlast" ) {
+    } else if (predict === "rice_blast"|| predict === "RiceBlast" || predict === "RiceBlast\n" || predict ===  "rice_blast\n") {
       return(
-        <View style={{ marginLeft: 130, marginTop: 30, marginRight: 20 }}>
+        <View style={{marginLeft:20, marginTop: 30, marginRight: 20 }}>
         <Text
           style={{
             fontSize: 17,
@@ -126,25 +110,7 @@ const Save = ({ route }) => {
           areas with low soil moisture, frequent and prolonged periods or rain
           shower,and cool temperature in the daytime.
         </Text>
-        <Text
-          style={{
-            fontSize: 15,
-            fontFamily: FontFamily.urbanistSemibold,
-          }}
-        >
-          Symptoms
-        </Text>
-        <Text
-          style={{
-            fontSize: 15,
-            fontFamily: FontFamily.urbanistMedium,
-            marginTop: 10,
-            textAlign: "left",
-          }}
-        >
-          initial symptoms appear as white to gray-green lesions or spots,
-          with dark green border
-        </Text>
+        
         </View>
         
       )
@@ -251,6 +217,7 @@ const Save = ({ route }) => {
         style={styles.landing}
       >
         <Provider>
+        <ScrollView>
           <View>
             <Portal>
               <View style={{ marginLeft: 20, marginTop: 10 }}>
@@ -317,7 +284,7 @@ const Save = ({ route }) => {
                         Save Details
                       </Title>
                       <View style={styles.contentGp}>
-                        <Pressable style={styles.press} onPress={sv}>
+                        <TouchableOpacity style={styles.press} onPress={sv}>
                           <LinearGradient
                             style={[
                               styles.groupChild,
@@ -335,9 +302,9 @@ const Save = ({ route }) => {
                           >
                             Save
                           </Text>
-                        </Pressable>
+                        </TouchableOpacity>
 
-                        <Pressable style={styles.press2} onPress={generatePDF}>
+                        <TouchableOpacity style={styles.press2} onPress={generatePDF}>
                           <LinearGradient
                             style={[
                               styles.groupChild,
@@ -357,7 +324,7 @@ const Save = ({ route }) => {
                           >
                             Save as PDF
                           </Text>
-                        </Pressable>
+                        </TouchableOpacity>
                       </View>
                     </View>
                   </View>
@@ -365,6 +332,7 @@ const Save = ({ route }) => {
               </Dialog>
             </Portal>
           </View>
+          </ScrollView>
         </Provider>
       </ImageBackground>
       <BottomSheet
@@ -374,7 +342,7 @@ const Save = ({ route }) => {
         borderRadius={100}
         handleIndicatorStyle={{ backgroundColor: "#96E42E" }}
       >
-        <Pressable style={styles.press3} onPress={showDialog}>
+        <TouchableOpacity style={styles.press3} onPress={showDialog}>
           <LinearGradient
             style={[styles.groupChild1, styles.groupParentLayout1]}
             locations={[0, 1]}
@@ -391,7 +359,7 @@ const Save = ({ route }) => {
           >
             Save Details
           </Text>
-        </Pressable>
+        </TouchableOpacity>
       </BottomSheet>
     </>
   );

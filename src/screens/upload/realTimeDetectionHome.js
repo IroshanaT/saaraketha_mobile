@@ -6,6 +6,7 @@ import {
   Text,
   Image,
   Pressable,
+  TouchableOpacity
 } from "react-native";
 import { FontFamily, FontSize, Color, Border } from "../../../GlobalStyles";
 import { Avatar, Card, Title } from "react-native-paper";
@@ -36,7 +37,7 @@ export default function RealTimeDetectionHome() {
               Start Live Stream
             </Title>
 
-            <Pressable
+            <TouchableOpacity
               style={styles.press}
               onPress={() => navigation.navigate("realTimeDevice")}
             >
@@ -59,9 +60,9 @@ export default function RealTimeDetectionHome() {
               >
                 Connect to Device
               </Text>
-            </Pressable>
+            </TouchableOpacity>
 
-            <Pressable
+            <TouchableOpacity
               style={styles.press2}
               onPress={() => navigation.navigate("Detection")}
             >
@@ -84,7 +85,7 @@ export default function RealTimeDetectionHome() {
               >
                 Connect to Mobile App
               </Text>
-            </Pressable>
+            </TouchableOpacity>
           </Card.Content>
         </Card>
       </View>

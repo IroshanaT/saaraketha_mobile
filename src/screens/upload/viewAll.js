@@ -10,6 +10,7 @@ import {
   ScrollView,
   FlatList,
   TextInput,
+  TouchableOpacity
 } from "react-native";
 import { FontFamily, FontSize, Color, Border } from "../../../GlobalStyles";
 import { LinearGradient } from "expo-linear-gradient";
@@ -62,7 +63,7 @@ const Viewall = () => {
   };
 
   const Card = ({ imageUrl, title }) => (
-    <Pressable
+    <TouchableOpacity
       style={[styles.groupView]}
       onPress={() =>
         navigation.navigate("View", { url: imageUrl, pred: title })
@@ -78,7 +79,7 @@ const Viewall = () => {
           </View>
         </View>
       </View>
-    </Pressable>
+    </TouchableOpacity>
   );
 
   return (
