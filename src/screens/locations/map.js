@@ -39,7 +39,7 @@ const Map = ({ route }) => {
   const [selecLocation, setSelecLocation] = useState([]);
   const [loading, setLoading] = useState(true);
   const [userID, setUserID] = useState("");
-  const [sparying, setSparying] = useState(false);
+
 
 
   const onpressfunction = (data) => {
