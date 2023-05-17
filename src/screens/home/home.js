@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{ useContext, useEffect, useState, useRef } from "react";
 import {
   Image,
   StyleSheet,
@@ -43,7 +43,7 @@ const Home = () => {
 
         <Pressable
           style={[styles.groupView]}
-          onPress={() => navigation.navigate("Map")}
+          onPress={() => navigation.navigate("Map",{status:'Initial',IntialData:null})}
         >
           <LinearGradient
             style={[styles.groupChild, styles.groupParentLayout]}
