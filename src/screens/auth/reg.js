@@ -16,6 +16,7 @@ import * as ImagePicker from "expo-image-picker";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import { Avatar, Icon } from 'react-native-elements';
+import { Dialog, Portal, Provider, Title } from "react-native-paper";
 //Registration
 const RegScreen = () => {
   const [email, setEmail] = useState("");
@@ -26,6 +27,9 @@ const RegScreen = () => {
   const [error, setError] = useState("");
   const [imageUri, setImageUri] = useState(null);
   const navigation = useNavigation();
+  const [visible, setVisible] = useState(false);
+  const showDialog = () => setVisible(true);
+  const hideDialog = () => setVisible(false);
 
   const handleReg = async () => {
     if (email === "") {
@@ -51,7 +55,7 @@ const RegScreen = () => {
                 phone: phone,
                 imageUrl: downloadURL,
               });
-              navigation.replace("Login");
+              showDialog();
             } catch (error) {
               setError("Error");
             }
@@ -139,8 +143,16 @@ const RegScreen = () => {
     }
   };
 
+  const sv = async () => {
+    
+    hideDialog()
+    nav()
+
+  }
+
   return (
     <View style={styles.container}>
+           <Provider>
       <View style={styles.container1}> 
         <TouchableOpacity onPress={pickImage}>
           {imageUri ? (
@@ -250,7 +262,61 @@ const RegScreen = () => {
             <Text style={styles.createNewAccount}>Login.</Text>
           </TouchableOpacity>
         </Text>
-      </View>
+        </View>
+        <Dialog
+                visible={visible}
+                onDismiss={hideDialog}
+                style={{
+                  backgroundColor: "white",
+                  marginBottom: 200,
+                  paddingBottom: 60,
+                }}
+              >
+                <Dialog.Content>
+                  <View style={styles.card}>
+                    <Image
+                       source={require("../../../assets/regI.png")}
+                
+                      resizeMode="cover"
+                      style={styles.avatar}
+                    />
+                    <View>
+                      <Title
+                        style={{
+                          fontSize: 20,
+                          textAlign: "center",
+                        }}
+                      >
+                        Account Created
+                      </Title>
+                      <View style={styles.contentGp}>
+                        <TouchableOpacity style={styles.press} onPress={sv}>
+                          <LinearGradient
+                            style={[
+                              styles.groupChild,
+                              styles.groupParentLayout,
+                            ]}
+                            locations={[0, 1]}
+                            colors={["#5ebc00", "#bbff4d"]}
+                          />
+                          <Text
+                            style={[
+                              styles.diseaseDetection,
+                              styles.ravinduTypo,
+                              { marginLeft: 50 },
+                            ]}
+                          >
+                            OK
+                          </Text>
+                        </TouchableOpacity>
+
+                      
+                      </View>
+                    </View>
+                  </View>
+                </Dialog.Content>
+              </Dialog>
+        </Provider>
     </View>
   );
 };
@@ -362,6 +428,50 @@ const styles = StyleSheet.create({
     right: 0,
     backgroundColor: '#fff',
     borderRadius: 10,
+  },
+  card: {
+    marginTop: 1,
+  },
+  avatar: {
+    marginHorizontal: 100,
+    backgroundColor: "white",
+    marginBottom: 40,
+    
+    width: 190,
+    height: 190,
+    borderRadius: 10,
+    marginLeft: 45,
+    marginTop: 5,
+  },
+  contentGp: {
+    left: 50,
+  },
+  press: {
+    top: 10,
+  },
+  groupChild: {
+    backgroundColor: "transparent",
+    borderRadius: Border.br_3xs,
+    top: 0,
+  },
+  groupParentLayout: {
+    height: 58,
+    width: 200,
+    left: 0,
+  },
+  ravinduTypo: {
+    fontFamily: FontFamily.urbanistSemibold,
+    fontWeight: "900",
+    lineHeight: 24,
+    fontSize: FontSize.size_mini,
+    textAlign: "center",
+    position: "absolute",
+  },
+  diseaseDetection: {
+    top: 16,
+    left: 35,
+    textAlign: "center",
+    color: Color.black,
   },
 });
 export default RegScreen;

@@ -1,45 +1,60 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext,useEffect, useRef, useState } from "react";
 import {
   StyleSheet,
   ImageBackground,
   Text,
   View,
   Image,
+   TouchableOpacity
 } from "react-native";
 import { FontFamily, FontSize, Color, Border } from "../../../GlobalStyles";
 import { useNavigation } from "@react-navigation/core";
+import { storage, db } from "../../../firebase";
+import { doc, deleteDoc } from 'firebase/firestore';
+import { AuthContext } from "../../contexts/auth";
+import BottomSheet from "@gorhom/bottom-sheet";
+import { LinearGradient } from "expo-linear-gradient";
 
 const View2 = ({ route }) => {
   const navigation = useNavigation();
   const { params } = route;
 
-
+  const { userId,uName} = useContext(AuthContext);
   useEffect(() => {
     if (params === undefined) {
       navigation.navigate('ViewAll');
     }
   }, [params, navigation]);
 
-  
+    const bottomSheetRef = useRef(null);
 
   useEffect(() => {
     if (params !== undefined) {
-        let { url, pred } = route.params;
-    
+        let { url, pred,idd } = route.params;
+         console.log(idd)
+         
       setPredict(pred);
       setPhoto(url);
+      setId(idd);
     }
  
   }, [params]);
-
-
+  
+  
+    useEffect(() => {
+        if(predict==="")
+        {
+           navigation.navigate('ViewAll');
+        }
+    }, [predict]);
+  
+  const [id,setId] =useState("");
   const [photo, setPhoto] = useState("");
   const [predict, setPredict] = useState("");
   const [err, setErr] = useState("");
 
     const TextArea = () => {
-      console.log(predict)
-  
+   if(photo !==""){
       return (
         <View style={{ marginLeft: 13, marginTop: 30, marginRight: 20 }}>
           <Text
@@ -52,10 +67,46 @@ const View2 = ({ route }) => {
           </Text>
          
         </View>
-      );
+      );}
+    }
+    
+    const Btn = () =>{
+    if(photo !==""){
+    return (
+          <TouchableOpacity style={styles.press3} onPress={del}>
+          <LinearGradient
+            style={[styles.groupChild1, styles.groupParentLayout1]}
+            locations={[0, 1]}
+            colors={["#5ebc00", "#bbff4d"]}
+          />
+
+          <Text
+            style={[
+              styles.diseaseDetection1,
+              styles.ravinduTypo1,
+              { color: "black" },
+              { marginLeft: 35 },
+            ]}
+          >
+            Delete
+          </Text>
+        </TouchableOpacity>
+    );}
     }
   
+  const del= async()=>{
+  
+  const subCollectionRef = doc(db, 'prediction', userId, 'list', id);
 
+  try {
+    await deleteDoc(subCollectionRef);
+    setPhoto("")
+    setPredict("")
+    navigation.navigate('ViewAll');
+  } catch (error) {
+    console.error('Error deleting document:', error);
+  }
+  }
 
 
   return (
@@ -107,6 +158,17 @@ const View2 = ({ route }) => {
           </View>
     
       </ImageBackground>
+      
+         <BottomSheet
+        ref={bottomSheetRef}
+        snapPoints={["15%", "20%"]}
+        initialSnapIndex={0}
+        borderRadius={100}
+        handleIndicatorStyle={{ backgroundColor: "#96E42E" }}
+      >
+       <Btn/>
+       
+      </BottomSheet>
     </>
   );
 };

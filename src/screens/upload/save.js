@@ -52,6 +52,62 @@ const Save = ({ route }) => {
   const [err, setErr] = useState("");
   const [ur, setUr] = useState("");
 
+  const ng = () =>{
+   navigation.navigate('Upload');
+  }
+
+
+  const Btn = () =>{
+
+ 
+  
+  if(predict === "ThripsDamage" || predict === "Thrips_damage" || predict === "Thrips_damage\n" ||  predict ===  "ThripsDamage\n" ||predict === "rice_blast"|| predict === "RiceBlast" || predict === "RiceBlast\n" || predict ===  "rice_blast\n"){
+   return (
+    <TouchableOpacity style={styles.press3} onPress={showDialog}>
+          <LinearGradient
+            style={[styles.groupChild1, styles.groupParentLayout1]}
+            locations={[0, 1]}
+            colors={["#5ebc00", "#bbff4d"]}
+          />
+
+          <Text
+            style={[
+              styles.diseaseDetection1,
+              styles.ravinduTypo1,
+              { color: "black" },
+              { marginLeft: 18 },
+            ]}
+          >
+            Save Details
+          </Text>
+        </TouchableOpacity>
+   )
+  }else
+  { 
+    return (
+    <TouchableOpacity style={styles.press3} onPress={ng}>
+          <LinearGradient
+            style={[styles.groupChild1, styles.groupParentLayout1]}
+            locations={[0, 1]}
+            colors={["#5ebc00", "#bbff4d"]}
+          />
+
+          <Text
+            style={[
+              styles.diseaseDetection1,
+              styles.ravinduTypo1,
+              { color: "black" },
+              { marginLeft: 40 },
+            ]}
+          >
+            Back 
+          </Text>
+        </TouchableOpacity>
+    )
+  }
+  
+  }
+  
   const TextArea = () => {
     if (predict === "ThripsDamage" || predict === "Thrips_damage" || predict === "Thrips_damage\n" ||  predict ===  "ThripsDamage\n") {
       return (
@@ -72,13 +128,7 @@ const Save = ({ route }) => {
               textAlign: "left",
             }}
           >
-            Rice blast caused by the fungus Magnopothe oryzae , is generally
-            considered the most destructive disease of the rice . Rice blast is
-            named as leaf blast , nodel blast,panical blast or neck blast, based
-            on the part of the plant infected . A leaf blast infection can kill
-            seedings or plants up to the tillering stage. Rce blast occurs in
-            areas with low soil moisture, frequent and prolonged periods or rain
-            shower,and cool temperature in the daytime.
+            Thrips damage is caused by the Stenchaetothrips biformis (Bagnall). Periods of dry weather favor the development of the rice thrips. No standing water in the rice fields encourages damage. These insects are present in all rice environments. In the tropics, the rice thrips becomes abundant in dry periods from July to September and January to March. In temperate areas, the insects migrate and hibernate on  graminaceous weeds during the winter season. Thrips damage normally hides underneath unopened leaves and feed on the young tissues. The feeding causes small sliver marks or yellow patches on the leaf and stems. Heavy feeding causes the leaves to curl at the edges before turning yellow and dying. The plants growth can be severely restricted and the whole plant can die if the insect is not controlled.
           </Text>
           
         </View>
@@ -342,24 +392,8 @@ const Save = ({ route }) => {
         borderRadius={100}
         handleIndicatorStyle={{ backgroundColor: "#96E42E" }}
       >
-        <TouchableOpacity style={styles.press3} onPress={showDialog}>
-          <LinearGradient
-            style={[styles.groupChild1, styles.groupParentLayout1]}
-            locations={[0, 1]}
-            colors={["#5ebc00", "#bbff4d"]}
-          />
-
-          <Text
-            style={[
-              styles.diseaseDetection1,
-              styles.ravinduTypo1,
-              { color: "black" },
-              { marginLeft: 18 },
-            ]}
-          >
-            Save Details
-          </Text>
-        </TouchableOpacity>
+       <Btn/>
+       
       </BottomSheet>
     </>
   );

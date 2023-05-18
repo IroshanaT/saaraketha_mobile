@@ -59,26 +59,6 @@ const Detection = () => {
             Upload Image
           </Text>
         </Pressable>
-
-        <Pressable
-          style={[styles.groupView]}
-          onPress={() => navigation.navigate("Home")}
-        >
-          <LinearGradient
-            style={[styles.groupChild, styles.groupParentLayout]}
-            locations={[0, 1]}
-            colors={["#5ebc00", "#bbff4d"]}
-          />
-          <Image
-            style={[styles.groupItem, styles.groupPosition]}
-            resizeMode="cover"
-            source={require("../../../assets/g9.png")}
-          />
-          <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
-            Upload Video
-          </Text>
-        </Pressable>
-
         <Pressable
           style={[styles.groupView]}
           onPress={() => navigation.navigate("ViewAll")}
@@ -97,6 +77,68 @@ const Detection = () => {
             History
           </Text>
         </Pressable>
+
+
+
+      
+        <View
+          style={[styles.groupView,{marginTop:100}]}
+          onPress={() => navigation.navigate("ViewAll")}
+        >
+          <LinearGradient
+            style={[styles.groupChild, styles.groupParentLayout2]}
+            locations={[0, 1]}
+            colors={["#FFFFFF", "#FFFFFF"]}
+          />
+          <Image
+            style={[styles.groupItem2, styles.groupPosition]}
+            resizeMode="cover"
+            source={require("../../../assets/non2.png")}
+          />
+          <Text style={[styles.diseaseDetection, styles.ravinduTypo, { marginTop: 5 }]}>
+            Healthy
+          </Text>
+        </View>
+
+        <View
+          style={[styles.groupView,{marginTop:80}]}
+          onPress={() => navigation.navigate("ViewAll")}
+        >
+          <LinearGradient
+            style={[styles.groupChild, styles.groupParentLayout2]}
+            locations={[0, 1]}
+            colors={["#FFFFFF", "#FFFFFF"]}
+          />
+          <Image
+            style={[styles.groupItem2, styles.groupPosition]}
+            resizeMode="cover"
+            source={require("../../../assets/non1.png")}
+          />
+          <Text style={[styles.diseaseDetection, styles.ravinduTypo, { marginTop: 5 }]}>
+            Thrips Damage
+          </Text>
+        </View>
+
+
+        <View
+          style={[styles.groupView,{marginTop:80}]}
+          onPress={() => navigation.navigate("ViewAll")}
+        >
+          <LinearGradient
+            style={[styles.groupChild, styles.groupParentLayout2]}
+            locations={[0, 1]}
+            colors={["#FFFFFF", "#FFFFFF"]}
+          />
+          <Image
+            style={[styles.groupItem2, styles.groupPosition]}
+            resizeMode="cover"
+            source={require("../../../assets/dt.png")}
+          />
+          <Text style={[styles.diseaseDetection, styles.ravinduTypo, { marginTop: 5 }]}>
+            Rice Blast
+          </Text>
+        </View>
+
       </View>
     </ImageBackground>
   );
@@ -134,6 +176,11 @@ const styles = StyleSheet.create({
     width: 29,
     height: 26,
   },
+  groupItem2: {
+    width: 49,
+    height: 46,
+    
+  },
   groupChild: {
     backgroundColor: "transparent",
     borderRadius: Border.br_3xs,
@@ -141,6 +188,12 @@ const styles = StyleSheet.create({
   },
   groupParentLayout: {
     height: 58,
+    width: 346,
+    left: 0,
+    position: "absolute",
+  },
+  groupParentLayout2: {
+    height: 68,
     width: 346,
     left: 0,
     position: "absolute",

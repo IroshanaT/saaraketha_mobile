@@ -15,16 +15,20 @@ import {
 import { FontFamily, FontSize, Color, Border } from "../../../GlobalStyles";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/core";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { useIsFocused } from '@react-navigation/native';
+import { collection, getDocs, query, where ,doc} from "firebase/firestore";
 import { db } from "../../../firebase";
 import { AuthContext } from "../../contexts/auth";
 
 const Viewall = () => {
   const navigation = useNavigation();
+   const isFocused = useIsFocused();
+
   const { userId, uName } = useContext(AuthContext);
   const [err, setErr] = useState("");
   const [items, setItems] = useState([]);
   const [search, setSearch] = useState("");
+
 
   const fetchData = async () => {
     const q = query(collection(db, "prediction", userId, "list"));
@@ -37,20 +41,27 @@ const Viewall = () => {
   };
 
   const fetch = async () => {
-    const q = query(
-      collection(db, "prediction", userId, "list"),
-      where("prediction", "==", search)
-    );
-    const querySnapshot = await getDocs(q);
-    const data = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+  
+     const parentCollectionRef = doc(db, 'prediction',  userId);
+      const q = query(collection(parentCollectionRef, 'list'), where("prediction", '==', search+"\n"));
+      const querySnapshot = await getDocs(q);
+      const data = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      
     setItems(data);
+       
   };
-
+  
+    useEffect(()=>{
+    console.log(isFocused)
+       fetchData();
+    },[isFocused])
+    
+    
     useEffect(() => {
-
+     
     if (search === "") {
       fetchData();
     } else {
@@ -62,11 +73,11 @@ const Viewall = () => {
     setSearch(st);
   };
 
-  const Card = ({ imageUrl, title }) => (
+  const Card = ({ idd,imageUrl, title }) => (
     <TouchableOpacity
       style={[styles.groupView]}
       onPress={() =>
-        navigation.navigate("View", { url: imageUrl, pred: title })
+        navigation.navigate("View", {idd:idd, url: imageUrl, pred: title })
       }
     >
       <View style={styles.card2}>
@@ -100,7 +111,7 @@ const Viewall = () => {
         <FlatList
           data={items}
           renderItem={({ item }) => (
-            <Card imageUrl={item.image} title={item.prediction} />
+            <Card idd={item.id} imageUrl={item.image} title={item.prediction} />
           )}
           keyExtractor={(item, index) => index.toString()}
         />
