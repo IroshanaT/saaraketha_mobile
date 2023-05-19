@@ -1,16 +1,17 @@
-import React, { useContext,useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   StyleSheet,
   ImageBackground,
   Text,
   View,
   Image,
-   TouchableOpacity
+  TouchableOpacity,
+  Alert,
 } from "react-native";
 import { FontFamily, FontSize, Color, Border } from "../../../GlobalStyles";
 import { useNavigation } from "@react-navigation/core";
 import { storage, db } from "../../../firebase";
-import { doc, deleteDoc } from 'firebase/firestore';
+import { doc, deleteDoc } from "firebase/firestore";
 import { AuthContext } from "../../contexts/auth";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { LinearGradient } from "expo-linear-gradient";
@@ -19,42 +20,39 @@ const View2 = ({ route }) => {
   const navigation = useNavigation();
   const { params } = route;
 
-  const { userId,uName} = useContext(AuthContext);
+  const { userId, uName } = useContext(AuthContext);
   useEffect(() => {
     if (params === undefined) {
-      navigation.navigate('ViewAll');
+      navigation.navigate("ViewAll");
     }
   }, [params, navigation]);
 
-    const bottomSheetRef = useRef(null);
+  const bottomSheetRef = useRef(null);
 
   useEffect(() => {
     if (params !== undefined) {
-        let { url, pred,idd } = route.params;
-         console.log(idd)
-         
+      let { url, pred, idd } = route.params;
+      console.log(idd);
+
       setPredict(pred);
       setPhoto(url);
       setId(idd);
     }
- 
   }, [params]);
-  
-  
-    useEffect(() => {
-        if(predict==="")
-        {
-           navigation.navigate('ViewAll');
-        }
-    }, [predict]);
-  
-  const [id,setId] =useState("");
+
+  useEffect(() => {
+    if (predict === "") {
+      navigation.navigate("ViewAll");
+    }
+  }, [predict]);
+
+  const [id, setId] = useState("");
   const [photo, setPhoto] = useState("");
   const [predict, setPredict] = useState("");
   const [err, setErr] = useState("");
 
-    const TextArea = () => {
-   if(photo !==""){
+  const TextArea = () => {
+    if (photo !== "") {
       return (
         <View style={{ marginLeft: 13, marginTop: 30, marginRight: 20 }}>
           <Text
@@ -63,21 +61,21 @@ const View2 = ({ route }) => {
               fontFamily: FontFamily.urbanistSemibold,
             }}
           >
-           {predict}
+            {predict}
           </Text>
-         
         </View>
-      );}
+      );
     }
-    
-    const Btn = () =>{
-    if(photo !==""){
-    return (
-          <TouchableOpacity style={styles.press3} onPress={del}>
+  };
+
+  const Btn = () => {
+    if (photo !== "") {
+      return (
+        <TouchableOpacity style={styles.press3} onPress={del}>
           <LinearGradient
             style={[styles.groupChild1, styles.groupParentLayout1]}
             locations={[0, 1]}
-            colors={["#5ebc00", "#bbff4d"]}
+            colors={["#F31F1F", "#F2A9A9"]}
           />
 
           <Text
@@ -91,23 +89,39 @@ const View2 = ({ route }) => {
             Delete
           </Text>
         </TouchableOpacity>
-    );}
+      );
     }
-  
-  const del= async()=>{
-  
-  const subCollectionRef = doc(db, 'prediction', userId, 'list', id);
+  };
 
-  try {
-    await deleteDoc(subCollectionRef);
-    setPhoto("")
-    setPredict("")
-    navigation.navigate('ViewAll');
-  } catch (error) {
-    console.error('Error deleting document:', error);
-  }
-  }
+  const del = async () => {
+    // Show confirmation dialog
+    Alert.alert(
+      "Confirmation",
+      "Are you sure you want to delete this plant details?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Delete",
+          onPress: async () => {
+            const subCollectionRef = doc(db, "prediction", userId, "list", id);
 
+            try {
+              await deleteDoc(subCollectionRef);
+              setPhoto("");
+              setPredict("");
+              navigation.navigate("ViewAll");
+            } catch (error) {
+              console.error("Error deleting document:", error);
+            }
+          },
+        },
+      ],
+      { cancelable: false }
+    );
+  };
 
   return (
     <>
@@ -115,59 +129,57 @@ const View2 = ({ route }) => {
         source={require("../../../assets/bg3.png")}
         style={styles.landing}
       >
-          <View>
-              <View style={{ marginLeft: 20, marginTop: 10 }}>
-                <Text
-                  style={{
-                    fontSize: 18,
-                    fontFamily: FontFamily.urbanistSemibold,
-                  }}
-                >
-                 View History
-                </Text>
-              </View>
-
-              <View style={{ marginLeft: 150, marginTop: 30, marginRight: 20 }}>
-                <Text
-                  style={{
-                    fontSize: 15,
-                    fontFamily: FontFamily.urbanistSemibold,
-                  }}
-                >
-                  Captured Image
-                </Text>
-              </View>
-              {photo && (
-                <View>
-                  <Text style={styles.error}>{err}</Text> 
-                <Image
-                  style={{
-                    width: 352,
-                    height: 190,
-                    borderRadius: 10,
-                    marginLeft: 20,
-                    marginTop: 5,
-                  }}
-                  resizeMode="cover"
-                  source={{ uri: photo }}
-                />
-                </View>
-              )}
-                   
-              <TextArea />
+        <View>
+          <View style={{ marginLeft: 20, marginTop: 10 }}>
+            <Text
+              style={{
+                fontSize: 18,
+                fontFamily: FontFamily.urbanistSemibold,
+              }}
+            >
+              View History
+            </Text>
           </View>
-    
+
+          <View style={{ marginLeft: 150, marginTop: 30, marginRight: 20 }}>
+            <Text
+              style={{
+                fontSize: 15,
+                fontFamily: FontFamily.urbanistSemibold,
+              }}
+            >
+              Captured Image
+            </Text>
+          </View>
+          {photo && (
+            <View>
+              <Text style={styles.error}>{err}</Text>
+              <Image
+                style={{
+                  width: 352,
+                  height: 190,
+                  borderRadius: 10,
+                  marginLeft: 20,
+                  marginTop: 5,
+                }}
+                resizeMode="cover"
+                source={{ uri: photo }}
+              />
+            </View>
+          )}
+
+          <TextArea />
+        </View>
       </ImageBackground>
-      
-         <BottomSheet
+
+      <BottomSheet
         ref={bottomSheetRef}
         snapPoints={["15%", "20%"]}
         initialSnapIndex={0}
         borderRadius={100}
         handleIndicatorStyle={{ backgroundColor: "#96E42E" }}
       >
-       <Btn/>
-       
+        <Btn />
       </BottomSheet>
     </>
   );
@@ -271,7 +283,7 @@ const styles = StyleSheet.create({
     color: "red",
     marginTop: 5,
     left: "18%",
-  }
+  },
 });
 
 export default View2;

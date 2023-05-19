@@ -21,6 +21,9 @@ import { storage, db } from "../../../firebase";
 import { AuthContext } from "../../contexts/auth";
 import RNHTMLtoPDF from "react-native-html-to-pdf";
 
+import { printToFileAsync } from "expo-print";
+import { shareAsync } from "expo-sharing";
+
 const SaveNonAerial = ({ route }) => {
   const navigation = useNavigation();
   const { params } = route;
@@ -249,48 +252,37 @@ const SaveNonAerial = ({ route }) => {
     }
   };
 
-  const generatePDF = async () => {
-    try {
-      let options = {
-        html: `
+  let options = `
         <html>
-          <head>
-            <style>
-              body {
-                font-family: 'Helvetica';
-                font-size: 12px;
-              }
-              header, footer {
-                height: 50px;
-                background-color: #fff;
-                color: #000;
-                display: flex;
-                justify-content: center;
-                padding: 0 20px;
-              }
-             
-            </style>
-          </head>
           <body>
-            <header>
-              <h1>Prediction</h1>
-            </header>
-            <h1>Prediction</h1>
-            <p>${predict}</p>
-            <img src=${ur} alt="pred" width="300" height="300">
-            <p>${new Date().getDate()}</p>
+             <div style="width: 90%; height: auto; background-color: #fff; border-radius: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); padding: 20px; margin: 20px;"
+      border-color="green">
+        
+            <h2>${predict}</h2>
+            <img src=${
+              route.params.url
+            } alt="Italian Trulli" width="100%" height : "80px">
+            <h4>${new Date().getDate()}</h4>
+
+            </div>
            
           </body>
         </html>
-      `,
-        fileName: "test",
-        directory: "Documents",
-      };
-      const file = await RNHTMLtoPDF.convert(options);
-    } catch (error) {
-      console.log(error);
-      setErr("Error");
-    }
+      `;
+
+  const generatePDF = async () => {
+    const file = await printToFileAsync({
+      html: options,
+      base64: false,
+      fileName: "prediction.pdf",
+    });
+
+    //share with pdf name
+    await shareAsync(file.uri, {
+      mimeType: "application/pdf",
+      dialogTitle: "Share PDF",
+      UTI: "com.adobe.pdf",
+    });
   };
 
   return (
