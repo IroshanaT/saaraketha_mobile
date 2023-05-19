@@ -21,7 +21,7 @@ import { storage, db } from "../../../firebase";
 import { AuthContext } from "../../contexts/auth";
 import RNHTMLtoPDF from "react-native-html-to-pdf";
 
-const Save = ({ route }) => {
+const SaveNonAerial = ({ route }) => {
   const navigation = useNavigation();
   const { params } = route;
   const { userId, uName } = useContext(AuthContext);
@@ -192,7 +192,7 @@ const Save = ({ route }) => {
               fontFamily: FontFamily.urbanistSemibold,
             }}
           >
-            Invalid Image
+            Healthy Rice Plant
           </Text>
           <Text
             style={{
@@ -202,7 +202,7 @@ const Save = ({ route }) => {
               textAlign: "left",
             }}
           >
-            Please upload a valid image of a rice plant.
+            The rice plant is a grass with a life cycle of one year.
           </Text>
         </View>
       );
@@ -537,4 +537,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Save;
+export default SaveNonAerial;

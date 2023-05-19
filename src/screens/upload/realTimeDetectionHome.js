@@ -6,7 +6,7 @@ import {
   Text,
   Image,
   Pressable,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import { FontFamily, FontSize, Color, Border } from "../../../GlobalStyles";
 import { Avatar, Card, Title } from "react-native-paper";
@@ -62,7 +62,7 @@ export default function RealTimeDetectionHome() {
               </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={styles.press2}
               onPress={() => navigation.navigate("Detection")}
             >
@@ -85,7 +85,7 @@ export default function RealTimeDetectionHome() {
               >
                 Connect to Mobile App
               </Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </Card.Content>
         </Card>
       </View>
@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
     elevation: 3,
     backgroundColor: "white",
     paddingBottom: 40,
+    marginTop: "25%",
   },
   avatar: {
     marginTop: 40,

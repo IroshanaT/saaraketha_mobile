@@ -7,7 +7,7 @@ import {
   Pressable,
   View,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import { FontFamily, FontSize, Color, Border } from "../../../GlobalStyles";
 import { LinearGradient } from "expo-linear-gradient";
@@ -24,6 +24,7 @@ const NonAerial = () => {
   const [photo, setPhoto] = useState(null);
   const [photoShow, setPhotoShow] = useState(null);
   const [err, setErr] = useState("");
+  const [flagCamera, setFlagCamera] = useState(1);
   const navigation = useNavigation();
   const gallery = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -55,6 +56,7 @@ const NonAerial = () => {
 
     let localUri = result.assets[0].uri;
     setPhotoShow(localUri);
+    setFlagCamera(5);
   };
 
   const dicardImage = () => {
@@ -62,25 +64,35 @@ const NonAerial = () => {
   };
 
   const predict = async () => {
-
     let filename = photoShow.split("/").pop();
     let match = /\.(\w+)$/.exec(filename);
     let type = match ? `image/${match[1]}` : `image`;
     let formData = new FormData();
     formData.append("file", { uri: photoShow, name: filename, type });
 
-    await axios
-    .post("http://172.173.192.159/nonareial", formData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    })
-    .then((res) => {
-      
-      navigation.navigate("Save", { url:photoShow,pred:res.data.result})
-    })
-    .catch((err) => {
-      console.log(err)
-      setErr("Error")
-    });
+    if (flagCamera == 5) {
+      //display description "please upload image valid image"
+      // setErr("Please upload valid image");
+      navigation.navigate("saveNonAerial", {
+        url: photoShow,
+        pred: "invalid_image",
+      });
+    } else {
+      await axios
+        .post("http://172.173.192.159/nonareial", formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        })
+        .then((res) => {
+          navigation.navigate("Save", {
+            url: photoShow,
+            pred: res.data.result,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          setErr("Error");
+        });
+    }
   };
 
   return (
@@ -120,7 +132,9 @@ const NonAerial = () => {
                     textAlign: "left",
                   }}
                 >
-                  This is the opposite version of the aerial images. The non - aerial images would be ground - level images. Then any ground level image belong to this category 
+                  This is the opposite version of the aerial images. The non -
+                  aerial images would be ground - level images. Then any ground
+                  level image belong to this category
                 </Text>
               </View>
 
@@ -153,7 +167,9 @@ const NonAerial = () => {
                     textAlign: "left",
                   }}
                 >
-                 To capture a non-aerial image of a leaf, you will need a camera or smartphone and a flat surface to place the leaf on. Here are the steps to follow:
+                  To capture a non-aerial image of a leaf, you will need a
+                  camera or smartphone and a flat surface to place the leaf on.
+                  Here are the steps to follow:
                 </Text>
               </View>
               <Image
@@ -177,12 +193,15 @@ const NonAerial = () => {
                   {photoShow ? (
                     photoShow && (
                       <View style={styles.imageContainer}>
-                        <Text style={styles.error}>{err}</Text> 
+                        <Text style={styles.error}>{err}</Text>
                         <Image
                           source={{ uri: photoShow }}
                           style={{ width: 200, height: 200, left: 50 }}
                         />
-                        <TouchableOpacity style={styles.press2} onPress={predict}>
+                        <TouchableOpacity
+                          style={styles.press2}
+                          onPress={predict}
+                        >
                           <LinearGradient
                             style={[
                               styles.groupChild,
@@ -203,7 +222,10 @@ const NonAerial = () => {
                             Predict
                           </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.press4} onPress={dicardImage}>
+                        <TouchableOpacity
+                          style={styles.press4}
+                          onPress={dicardImage}
+                        >
                           <LinearGradient
                             style={[
                               styles.groupChild,
@@ -244,7 +266,10 @@ const NonAerial = () => {
                           Upload Only the Non Aerial Images
                         </Title>
                         <View style={styles.contentGp}>
-                          <TouchableOpacity style={styles.press} onPress={camera}>
+                          <TouchableOpacity
+                            style={styles.press}
+                            onPress={camera}
+                          >
                             <LinearGradient
                               style={[
                                 styles.groupChild,
@@ -263,7 +288,10 @@ const NonAerial = () => {
                             </Text>
                           </TouchableOpacity>
 
-                          <TouchableOpacity style={styles.press2} onPress={gallery}>
+                          <TouchableOpacity
+                            style={styles.press2}
+                            onPress={gallery}
+                          >
                             <LinearGradient
                               style={[
                                 styles.groupChild,
@@ -282,7 +310,10 @@ const NonAerial = () => {
                               Upload Non Aerial Image
                             </Text>
                           </TouchableOpacity>
-                          <TouchableOpacity style={styles.press4} onPress={hideDialog}>
+                          <TouchableOpacity
+                            style={styles.press4}
+                            onPress={hideDialog}
+                          >
                             <LinearGradient
                               style={[
                                 styles.groupChild,

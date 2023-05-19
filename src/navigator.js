@@ -25,6 +25,7 @@ import Inbox from "./screens/inbox/inbox";
 
 import RealTimeHome from "./screens/upload/realTimeDetectionHome";
 import RealTimeDevice from "./screens/upload/realTimeDevice";
+import SaveNonAerial from "./screens/upload/saveNonAerial";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -340,14 +341,19 @@ export default function MainContainer() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
+          name={"saveNonAerial"}
+          component={SaveNonAerial}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
           name={"Inbox"}
           component={Inbox}
           options={{
-            title: 'Messages',
+            title: "Messages",
             headerStyle: {
-              backgroundColor: '#bbff4d',
+              backgroundColor: "#bbff4d",
             },
-            headerTintColor: '#000',
+            headerTintColor: "#000",
           }}
         />
       </Stack.Navigator>
