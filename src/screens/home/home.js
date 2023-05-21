@@ -6,6 +6,7 @@ import {
   Text,
   Pressable,
   ImageBackground,
+  TouchableOpacity,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/core";
@@ -21,7 +22,7 @@ const Home = () => {
     >
       <View style={{ marginLeft: 20, marginTop: 10 }}>
         <Text style={{ fontSize: 18, fontFamily: FontFamily.urbanistSemibold }}>
-          Dash Board
+          DashBoard
         </Text>
       </View>
       <View style={[styles.group]}>
@@ -62,7 +63,7 @@ const Home = () => {
 
         <Pressable
           style={[styles.groupView]}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => navigation.navigate("Recomendation")}
         >
           <LinearGradient
             style={[styles.groupChild, styles.groupParentLayout]}
