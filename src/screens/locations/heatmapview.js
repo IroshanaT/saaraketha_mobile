@@ -86,7 +86,7 @@ export default function HeatmapView({ route }) {
             points={heatmapData}
             tracksViewChanges={false}
             opacity={0.7}
-            radius={50}
+            radius={data.spread? data.spread:0}
             gradient={{
               colors: ["green", "yellow", "red"],
               startPoints: [0.2, 0.7, 1],
