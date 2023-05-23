@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import MapView, { Marker, Heatmap } from "react-native-maps";
-import { StyleSheet, View, ActivityIndicator } from "react-native";
+import MapView, { Marker, Heatmap, PROVIDER_GOOGLE } from "react-native-maps";
+import { StyleSheet, View, ActivityIndicator,ImageBackground } from "react-native";
 
 export default function HeatmapView({ route }) {
   const { data } = route.params;
@@ -52,15 +52,21 @@ export default function HeatmapView({ route }) {
   };
 
   useEffect(() => {
-    console.log(data.wind_speed);
-    gaussian_plume(1000, 0, 10, 10, 5, data.wind_speed, 50, 20);
-    setLoading(false);
-  }, [loading]);
+    setTimeout(() => {
+      console.log(data.wind_speed);
+      gaussian_plume(1000, 0, 10, 10, 5, data.wind_speed, 50, 20);
+      setLoading(false);
+    },8000)
+    },[]);
 
   return (
+    <ImageBackground
+      source={require("../../../assets/bg3.png")}
+      style={styles.landing}>
     <View style={styles.container}>
       {!loading && (
         <MapView
+        provider={PROVIDER_GOOGLE}
           style={styles.map}
           mapType={"hybrid"}
           initialRegion={{
@@ -89,13 +95,23 @@ export default function HeatmapView({ route }) {
           />
         </MapView>
       )}
-
+      <View style={{top:200}}>
       {loading && <ActivityIndicator size="large" color="#00ff00" />}
+      </View>
     </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+
+  landing: {
+    backgroundColor: "#edebeb",
+    flex: 1,
+    width: "100%",
+    overflow: "hidden",
+    zIndex:-2,
+  },
   container: {
     flex: 1,
   },
