@@ -7,6 +7,7 @@ import {
   Pressable,
   ImageBackground,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/core";
@@ -28,7 +29,7 @@ const Detection = () => {
         </Text>
       </View>
       <View style={[styles.group]}>
-        <Pressable onPress={() => navigation.navigate("RealTimeHome")}>
+        <TouchableOpacity onPress={() => navigation.navigate("RealTimeHome")}>
           <LinearGradient
             style={[styles.groupChild, styles.groupParentLayout]}
             locations={[0, 1]}
@@ -42,9 +43,9 @@ const Detection = () => {
           <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
             Real-time Disease Identification
           </Text>
-        </Pressable>
+        </TouchableOpacity>
 
-        <Pressable
+        <TouchableOpacity
           style={[styles.groupView]}
           onPress={() => navigation.navigate("Upload")}
         >
@@ -61,8 +62,8 @@ const Detection = () => {
           <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
             Upload Image
           </Text>
-        </Pressable>
-        <Pressable
+        </TouchableOpacity>
+        <TouchableOpacity
           style={[styles.groupView]}
           onPress={() => navigation.navigate("ViewAll")}
         >
@@ -79,7 +80,7 @@ const Detection = () => {
           <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
             History
           </Text>
-        </Pressable>
+        </TouchableOpacity>
 
 
 
