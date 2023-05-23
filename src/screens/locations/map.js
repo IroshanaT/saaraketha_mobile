@@ -5,6 +5,7 @@ import {
   Text,
   Pressable,
   ImageBackground,
+  TouchableOpacity,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/core";
@@ -13,6 +14,7 @@ import { FontFamily, FontSize, Color, Border } from "../../../GlobalStyles";
 import { BottomSheet } from "react-native-btr";
 import { StatusBar } from "expo-status-bar";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import {IP} from "../../components/constant";
 
 import { db, storage } from "../../../firebase";
 import {
@@ -40,7 +42,17 @@ const Map = ({ route }) => {
   const [loading, setLoading] = useState(true);
   const [userID, setUserID] = useState("");
 
+  //const IP = "http://192.168.1.11:8000";
 
+  const getSpraySignal = async () => {
+    try {
+      const response = await fetch(`${IP}/spray`);
+      const json = await response.json();
+      console.log(json);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const onpressfunction = (data) => {
     console.log(data.coordinate.latitude);
@@ -75,6 +87,7 @@ const Map = ({ route }) => {
             disease: doc.data().disease,
             coordinate: doc.data().coordinate,
             wind_speed: doc.data().wind_speed,
+            spread: doc.data().spread,
           }));
           setLocations(newData);
         });
@@ -148,6 +161,7 @@ const Map = ({ route }) => {
         <MapView
           style={styles.map}
           mapType={"hybrid"}
+          zoom = {10}
           initialRegion={{
             // latitude: 7.4867,
             // longitude: 80.3604,
@@ -201,12 +215,12 @@ const Map = ({ route }) => {
                 </Text>
               </View>
               <View style={styles.row}>
-                <Text style={styles.bottomText}>Latitude:</Text>
+                <Text style={styles.bottomText}>Longitude:</Text>
                 <Text style={[styles.bottomText, styles.locationText]}>
                   {selecLocation.coordinate.longitude}
                 </Text>
               </View>
-              <Pressable
+              <TouchableOpacity
                 style={[styles.groupView, styles.calcButton]}
                 onPress={() =>
                   navigation.navigate("HeatMap", { data: selecLocation })
@@ -220,9 +234,9 @@ const Map = ({ route }) => {
                 <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
                   Calculate Dispersionr
                 </Text>
-              </Pressable>
+              </TouchableOpacity>
               <View style={{ marginTop: 20 }}>
-                <Pressable onPress={() => shareLocation()}>
+                <TouchableOpacity onPress={() => shareLocation()}>
                   <LinearGradient
                     style={[styles.groupChild, styles.groupParentLayout]}
                     locations={[0, 1]}
@@ -237,13 +251,11 @@ const Map = ({ route }) => {
                   >
                     Share
                   </Text>
-                </Pressable>
+                </TouchableOpacity>
               </View>
               <View style={{ marginTop: 20 }}>
-                <Pressable
-                  onPress={() =>
-                    navigation.navigate("HeatMap", { data: selecLocation })
-                  }
+                <TouchableOpacity
+                  onPress={() => getSpraySignal().then(() => (() => console.log('Spary Succefully'))) }
                 >
                   <LinearGradient
                     style={[styles.groupChild, styles.groupParentLayout]}
@@ -259,7 +271,7 @@ const Map = ({ route }) => {
                   >
                     Spray
                   </Text>
-                </Pressable>
+                </TouchableOpacity>
               </View>
             </View>
           </View>

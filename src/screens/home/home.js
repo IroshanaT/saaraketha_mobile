@@ -6,6 +6,8 @@ import {
   Text,
   Pressable,
   ImageBackground,
+  TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/core";
@@ -19,13 +21,15 @@ const Home = () => {
       source={require("../../../assets/bg3.png")}
       style={styles.landing}
     >
+      <ScrollView>
+      <View style={styles.container}>
       <View style={{ marginLeft: 20, marginTop: 10 }}>
         <Text style={{ fontSize: 18, fontFamily: FontFamily.urbanistSemibold }}>
-          Dash Board
+          DashBoard
         </Text>
       </View>
       <View style={[styles.group]}>
-        <Pressable onPress={() => navigation.navigate("Detection")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Detection")}>
           <LinearGradient
             style={[styles.groupChild, styles.groupParentLayout]}
             locations={[0, 1]}
@@ -39,9 +43,9 @@ const Home = () => {
           <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
             Disease Detection
           </Text>
-        </Pressable>
+        </TouchableOpacity>
 
-        <Pressable
+        <TouchableOpacity
           style={[styles.groupView]}
           onPress={() => navigation.navigate("Map",{status:'Initial',IntialData:null})}
         >
@@ -58,11 +62,11 @@ const Home = () => {
           <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
             Location Tracker
           </Text>
-        </Pressable>
+        </TouchableOpacity>
 
-        <Pressable
+        <TouchableOpacity
           style={[styles.groupView]}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => navigation.navigate("Recomendation")}
         >
           <LinearGradient
             style={[styles.groupChild, styles.groupParentLayout]}
@@ -77,9 +81,9 @@ const Home = () => {
           <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
             Rice Variety Selection
           </Text>
-        </Pressable>
+        </TouchableOpacity>
 
-        <Pressable
+        <TouchableOpacity
           style={[styles.groupView]}
           onPress={() => navigation.navigate("Home")}
         >
@@ -96,7 +100,7 @@ const Home = () => {
           <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
             Crowd Source
           </Text>
-        </Pressable>
+        </TouchableOpacity>
 
         <View style={[styles.featuredTag, styles.tagLayout]}>
           <View style={styles.rectangleViewShadowBox} />
@@ -128,6 +132,8 @@ const Home = () => {
           </View>
         </View>
       </View>
+      </View>
+      </ScrollView>
     </ImageBackground>
   );
 };
@@ -138,6 +144,13 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     overflow: "hidden",
+    zIndex:-2,
+  },
+  container:{
+    height:700,
+    marginTop:10,
+    paddingBottom:50,
+    
   },
   ravinduTypo: {
     fontFamily: FontFamily.urbanistSemibold,
@@ -260,6 +273,7 @@ const styles = StyleSheet.create({
   },
   mg: {
     marginTop: 80,
+    marginBottom:80,
   },
   groupChild2: {
     backgroundColor: "transparent",

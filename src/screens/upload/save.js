@@ -28,6 +28,65 @@ const Save = ({ route }) => {
   const navigation = useNavigation();
   const { params } = route;
   const { userId, uName } = useContext(AuthContext);
+  const [discr, setDiscr] = useState("");
+
+  const thi_text   = `
+    Thrips damage is caused by the Stenchaetothrips biformis (Bagnall). Periods of dry weather favor the development of the rice thrips. No standing water in the rice fields encourages damage. These insects are present in all rice environments. In the tropics, the rice thrips becomes abundant in dry periods from July to September and January to March. In temperate areas, the insects migrate and hibernate on  graminaceous weeds during the winter season. Thrips damage normally hides underneath unopened leaves and feed on the young tissues. The feeding causes small sliver marks or yellow patches on the leaf and stems. Heavy feeding causes the leaves to curl at the edges before turning yellow and dying. The plants growth can be severely restricted and the whole plant can die if the insect is not controlled.
+
+    Symptoms 
+    damaged leaves have silvery streaks or yellowish patches.
+    translucent epidermis becomes visible on damaged area.
+    leaves curled from the margin to the middle.
+    leaf tips wither off when severely infested.
+    unfilled grains at panicle stage
+
+    Recommended pesticides 
+    Application of  phorate 10 G @ 75g or carbofuron 3 G @ 1.25kg / seed bed (300 sq mt area) followed by light  irrigation
+
+    Apply endosulfan 35EC @ 1.3 lit./ha or monocrotophos 36EC @1.3 lit./ha 15 days after transplanting when thrips population reaches 10-15 (adults+larvae) / hill.
+
+    Spray monocrotophos 36 SL 1.3ml/l 
+
+
+    Early Disease Management Steps 
+    Use resistant varieties.
+
+    Contact your local agriculture office for an up-to-date list of available varieties.
+    Flood to submerge the infested field for two days.
+    Encourage biological control agents: predatory thrips, coccinellid beetles, anthocorid bugs, and staphylinid beetles
+  `;
+
+  const blast_text = `Rice blast caused by the fungus Magnopothe oryzae , is generally considered the most destructive disease of the rice  . Rice blast is named as leaf blast , nodel blast,panical blast or neck blast, based on the part of the plant infected . A leaf blast infection can kill seedings or plants up to the tillering stage. Rce blast occurs in areas with low soil moisture, frequent and prolonged periods or rain shower,and cool temperature in the daytime.
+
+  Symptoms
+  
+  initial symptoms appear as white to gray-green lesions or spots, with dark green border  
+  
+  Older lesions on the leaves are elliptical or spindle-shaped and whitish to Gary centers with red to brownish or necrotic border.
+  
+  Some resemble diamond shape, wide in the center and pointed toward either ends.
+  
+  Lesions can enlarge and coalesce, rowing together kill the entire leaves.
+  
+  Recommended Pesticides 
+  
+  Tebuconazole 250g/I EC - dissolve 10 ml in 16 l of water 
+  
+  Isoprothiolane 400g/I EC - dissolve 20 ml in166 1 of water 
+  
+  Carbendazim 50% WP/WG - dissolve 11g/ 11 ml in 16 l of water  
+   
+  
+  Early disease management steps 
+  
+  Use of resistant varieties (Bg403, Bg 406, Bg 366, Bg 359, Bw 361 , Bg 250 )
+  
+  
+  Used of certified seed paddy free from the disease
+  
+  Addition of burnt paddy husk ( 250 kg per acre) to the soil during land preparation.
+  
+  Abstain addition of disease infected straw.`;
 
   useEffect(() => {
     if (params === undefined) {
@@ -231,6 +290,7 @@ const Save = ({ route }) => {
   };
 
   const sv = async () => {
+    let docText = "";
     const response = await fetch(photo);
     const blob = await response.blob();
     const fileName = `disease/${Date.now()}.jpg`;
@@ -245,10 +305,28 @@ const Save = ({ route }) => {
         "list"
       );
       const newDocRef = doc(subCollectionRef);
+      if (
+        predict === "ThripsDamage" ||
+        predict === "Thrips_damage" ||
+        predict === "Thrips_damage\n" ||
+        predict === "ThripsDamage\n"
+      ){ 
+        docText = thi_text;
+        setDiscr(thi_text)
+      }else if (
+        predict === "rice_blast" ||
+        predict === "RiceBlast" ||
+        predict === "RiceBlast\n" ||
+        predict === "rice_blast\n"
+      ){
+        docText = blast_text;
+        setDiscr(blast_text)
+      }
       const newData = {
         name: uName,
         image: downloadURL,
         prediction: predict,
+        description: docText,
         date: new Date().getDate(),
       };
       await setDoc(newDocRef, newData);
@@ -269,7 +347,7 @@ const Save = ({ route }) => {
               route.params.url
             } alt="Italian Trulli" width="100%" height : "80px">
             <h4>${new Date().getDate()}</h4>
-
+            <p>${discr}</p>
             </div>
            
           </body>

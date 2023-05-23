@@ -3,8 +3,19 @@ import { Dimensions } from 'react-native';
 import { Button } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { styles } from '../../../styles/style';
+import {IP} from '../../../components/constant';
 
 const { width } = Dimensions.get('window');
+
+const upSignal = async () => {
+  try {
+    const response = await fetch(`${IP}/up`);
+    const json = await response.json();
+    console.log(json);
+  } catch (error) {
+    console.error(error);
+    }
+  };
 
 const Button_up = () => {
   
@@ -19,7 +30,7 @@ const Button_up = () => {
       mode="contained"
       contentStyle={{ justifyContent: 'center' }}
       labelStyle={{ color: 'white', fontSize: 12 }}
-      onPress={() => console.log('Button pressed')}
+      onPress={() => upSignal().then(() => console.log('Up signal sent'))}
     >
       Up
     </Button>

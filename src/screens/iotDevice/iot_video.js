@@ -10,4 +10,3 @@ const VideoComponent = () => {
 };
 
 export { VideoComponent };
-
