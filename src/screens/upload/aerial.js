@@ -8,6 +8,7 @@ import {
   View,
   Image,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import { FontFamily, FontSize, Color, Border } from "../../../GlobalStyles";
 import { LinearGradient } from "expo-linear-gradient";
@@ -102,9 +103,15 @@ const Aerial = () => {
         source={require("../../../assets/bg3.png")}
         style={styles.landing}
       >
+        
+          
+        
+        
         <Provider>
           <View>
             <Portal>
+            <ScrollView>
+            <View style={styles.container}>
               <View style={{ marginLeft: 20, marginTop: 10 }}>
                 <Text
                   style={{
@@ -147,7 +154,7 @@ const Aerial = () => {
                   marginTop: 5,
                 }}
                 resizeMode="cover"
-                source={require("../../../assets/area1.png")}
+                source={require("../../../assets/area3.png")}
               />
 
               <View style={{ marginLeft: 20, marginTop: 20, marginRight: 20 }}>
@@ -174,15 +181,16 @@ const Aerial = () => {
               <Image
                 style={{
                   width: 352,
-                  height: 160,
+                  height: 300,
                   borderRadius: 10,
                   marginLeft: 20,
                   marginTop: 5,
                 }}
                 resizeMode="cover"
-                source={require("../../../assets/area2.png")}
+                source={require("../../../assets/area4.jpeg")}
               />
-
+              </View>
+              </ScrollView>
               <Dialog
                 visible={visible}
                 onDismiss={hideDialog}
@@ -378,6 +386,12 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     overflow: "hidden",
+  },
+  container:{
+    height:800,
+    marginTop:10,
+    paddingBottom:50,
+    
   },
 
   groupChild1: {

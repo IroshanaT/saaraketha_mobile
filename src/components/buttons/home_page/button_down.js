@@ -6,6 +6,17 @@ import { styles } from '../../../styles/style';
 
 const { width } = Dimensions.get('window');
 
+
+const downSignal = async () => {
+  try {
+    const response = await fetch(`${IP}/down`);
+    const json = await response.json();
+    console.log(json);
+  } catch (error) {
+    console.error(error);
+    }
+  };
+
 const Button_down = () => {
   return (
     <Button
@@ -18,7 +29,7 @@ const Button_down = () => {
       mode="contained"
       contentStyle={{ justifyContent: 'center' }}
       labelStyle={{ color: 'white', fontSize: 12 }}
-      onPress={() => console.log('Button pressed')}
+      onPress={() => downSignal().then(() => console.log('Down signal sent'))}
     >
       Down
     </Button>

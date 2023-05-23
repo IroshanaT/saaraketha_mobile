@@ -6,6 +6,7 @@ import {
   Text,
   Pressable,
   ImageBackground,
+  ScrollView,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/core";
@@ -19,6 +20,8 @@ const Detection = () => {
       source={require("../../../assets/bg3.png")}
       style={styles.landing}
     >
+      <ScrollView>
+        <View style={styles.container}>
       <View style={{ marginLeft: 20, marginTop: 10 }}>
         <Text style={{ fontSize: 18, fontFamily: FontFamily.urbanistSemibold }}>
           Disease Detection
@@ -140,6 +143,8 @@ const Detection = () => {
         </View>
 
       </View>
+      </View>
+      </ScrollView>
     </ImageBackground>
   );
 };
@@ -294,6 +299,12 @@ const styles = StyleSheet.create({
     left: 27,
     width: 32,
     top: 23,
+  },
+  container:{
+    height:700,
+    marginTop:10,
+    paddingBottom:50,
+    
   },
 });
 

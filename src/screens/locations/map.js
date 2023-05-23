@@ -14,6 +14,7 @@ import { FontFamily, FontSize, Color, Border } from "../../../GlobalStyles";
 import { BottomSheet } from "react-native-btr";
 import { StatusBar } from "expo-status-bar";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import {IP} from "../../components/constant";
 
 import { db, storage } from "../../../firebase";
 import {
@@ -41,7 +42,17 @@ const Map = ({ route }) => {
   const [loading, setLoading] = useState(true);
   const [userID, setUserID] = useState("");
 
+  //const IP = "http://192.168.1.11:8000";
 
+  const getSpraySignal = async () => {
+    try {
+      const response = await fetch(`${IP}/spray`);
+      const json = await response.json();
+      console.log(json);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const onpressfunction = (data) => {
     console.log(data.coordinate.latitude);
@@ -244,9 +255,7 @@ const Map = ({ route }) => {
               </View>
               <View style={{ marginTop: 20 }}>
                 <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate("HeatMap", { data: selecLocation })
-                  }
+                  onPress={() => getSpraySignal().then(() => (() => console.log('Spary Succefully'))) }
                 >
                   <LinearGradient
                     style={[styles.groupChild, styles.groupParentLayout]}

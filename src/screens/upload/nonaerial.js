@@ -8,6 +8,7 @@ import {
   View,
   Image,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import { FontFamily, FontSize, Color, Border } from "../../../GlobalStyles";
 import { LinearGradient } from "expo-linear-gradient";
@@ -104,6 +105,8 @@ const NonAerial = () => {
         <Provider>
           <View>
             <Portal>
+              <ScrollView>
+            <View style={styles.container}>
               <View style={{ marginLeft: 20, marginTop: 10 }}>
                 <Text
                   style={{
@@ -183,6 +186,8 @@ const NonAerial = () => {
                 resizeMode="cover"
                 source={require("../../../assets/non2.png")}
               />
+              </View>
+              </ScrollView>
 
               <Dialog
                 visible={visible}
@@ -380,7 +385,11 @@ const styles = StyleSheet.create({
     width: "100%",
     overflow: "hidden",
   },
-
+  container:{
+    height:700,
+    marginTop:10,
+    paddingBottom:50, 
+  },
   groupChild1: {
     backgroundColor: "transparent",
     borderRadius: Border.br_3xs,
