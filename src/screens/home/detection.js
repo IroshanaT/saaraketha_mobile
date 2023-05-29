@@ -92,7 +92,7 @@ const Detection = () => {
             {marginTop:80}
           ]}>
             <Text style={[styles.key2]}>
-            Recent searches...
+            Recent searches
             </Text> 
           </View>
           <Divider/>

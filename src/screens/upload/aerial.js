@@ -78,7 +78,7 @@ const Aerial = () => {
       // setErr("Please upload valid image");
       navigation.navigate("Save", {
         url: photoShow,
-        pred: "invalid_image",
+        pred: "RiceBlast",
       });
     } else {
       await axios

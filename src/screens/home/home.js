@@ -79,7 +79,7 @@ const Home = () => {
             source={require("../../../assets/g2.png")}
           />
           <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
-            Veriety Selection & Recommendation
+            Selection & Recommendation
           </Text>
         </TouchableOpacity>
 
