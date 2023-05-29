@@ -150,8 +150,8 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: 140,
-    height: 140,
+    width: 120,
+    height: 120,
   },
 
   imageContainer: {

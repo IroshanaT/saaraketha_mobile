@@ -377,9 +377,10 @@ const Save = ({ route }) => {
         style={styles.landing}
       >
         <Provider>
-          <ScrollView>
             <View>
               <Portal>
+                <ScrollView>
+                <View style={styles.container}>
                 <View style={{ marginLeft: 20, marginTop: 10 }}>
                   <Text
                     style={{
@@ -418,9 +419,12 @@ const Save = ({ route }) => {
                       source={{ uri: photo }}
                     />
                   </View>
+             
                 )}
 
                 <TextArea />
+                </View>
+                </ScrollView>
                 <Dialog
                   visible={visible}
                   onDismiss={hideDialog}
@@ -497,7 +501,6 @@ const Save = ({ route }) => {
                 </Dialog>
               </Portal>
             </View>
-          </ScrollView>
         </Provider>
       </ImageBackground>
       <BottomSheet
@@ -539,6 +542,12 @@ const styles = StyleSheet.create({
     fontSize: FontSize.size_mini,
     textAlign: "left",
     position: "absolute",
+  },
+  container:{
+    height:800,
+    marginTop:10,
+    paddingBottom:50,
+    
   },
   diseaseDetection1: {
     top: 16,
