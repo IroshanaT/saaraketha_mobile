@@ -16,6 +16,7 @@ import { AuthContext } from "../../contexts/auth";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { LinearGradient } from "expo-linear-gradient";
 
+
 const View2 = ({ route }) => {
   const navigation = useNavigation();
   const { params } = route;
@@ -70,7 +71,9 @@ const View2 = ({ route }) => {
 
   const Btn = () => {
     if (photo !== "") {
-      return (
+      return (<>
+          <View style ={styles.btnContainer}>  
+          
         <TouchableOpacity style={styles.press3} onPress={del}>
           <LinearGradient
             style={[styles.groupChild1, styles.groupParentLayout1]}
@@ -82,13 +85,33 @@ const View2 = ({ route }) => {
             style={[
               styles.diseaseDetection1,
               styles.ravinduTypo1,
-              { color: "black" },
-              { marginLeft: 35 },
+              { color: "white" },
+              { marginLeft: 10 },
             ]}
           >
             Delete
           </Text>
         </TouchableOpacity>
+        <TouchableOpacity style={styles.press3} onPress={() => navigation.goBack()}>
+        <LinearGradient
+          style={[styles.groupChild1, styles.groupParentLayout1]}
+          locations={[1, 1]}
+          colors={["#222222", "#F2A9A9"]}
+        />
+
+        <Text
+          style={[
+            styles.diseaseDetection1,
+            styles.ravinduTypo1,
+            { color: "white" },
+            { marginLeft: 10 },
+          ]}
+        >
+          Cancel
+        </Text>
+      </TouchableOpacity>
+      </View>
+      </>
       );
     }
   };
@@ -200,7 +223,7 @@ const styles = StyleSheet.create({
   },
   groupParentLayout1: {
     height: 58,
-    width: 200,
+    width: 160,
     left: 0,
   },
 
@@ -220,8 +243,14 @@ const styles = StyleSheet.create({
     textAlign: "left",
     color: Color.darkslategray_200,
   },
+
+  btnContainer:{
+    flexDirection: "row",
+    gap:10
+
+  },
   press3: {
-    left: 100,
+    left: 25,
   },
 
   avatar: {
