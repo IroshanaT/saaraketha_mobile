@@ -7,6 +7,7 @@ import {
   Image,
   TouchableOpacity,
   Alert,
+  ScrollView,
 } from "react-native";
 import { FontFamily, FontSize, Color, Border } from "../../../GlobalStyles";
 import { useNavigation } from "@react-navigation/core";
@@ -15,6 +16,7 @@ import { doc, deleteDoc } from "firebase/firestore";
 import { AuthContext } from "../../contexts/auth";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { LinearGradient } from "expo-linear-gradient";
+import { cos } from "react-native-reanimated";
 
 
 const View2 = ({ route }) => {
@@ -34,6 +36,7 @@ const View2 = ({ route }) => {
     if (params !== undefined) {
       let { url, pred, idd } = route.params;
       console.log(idd);
+      console.log(pred);
 
       setPredict(pred);
       setPhoto(url);
@@ -52,8 +55,68 @@ const View2 = ({ route }) => {
   const [predict, setPredict] = useState("");
   const [err, setErr] = useState("");
 
-  const TextArea = () => {
-    if (photo !== "") {
+
+
+  const  diseaseData = (predict) => {
+    if (
+      predict === "ThripsDamage" ||
+      predict === "Thrips_damage" ||
+      predict === "Thrips_damage\n" ||
+      predict === "ThripsDamage\n"
+    ) {
+      return (
+        <View style={{ marginLeft: 20, marginTop: 30, marginRight: 20 }}>
+          <Text
+            style={{
+              fontSize: 15,
+              fontFamily: FontFamily.urbanistMedium,
+              marginTop: 10,
+              textAlign: "left",
+            }}
+          >
+            Thrips damage is caused by the Stenchaetothrips biformis (Bagnall).
+            Periods of dry weather favor the development of the rice thrips. No
+            standing water in the rice fields encourages damage. These insects
+            are present in all rice environments. In the tropics, the rice
+            thrips becomes abundant in dry periods from July to September and
+            January to March. In temperate areas, the insects migrate and
+            hibernate on  graminaceous weeds during the winter season. Thrips
+            damage normally hides underneath unopened leaves and feed on the
+            young tissues. The feeding causes small sliver marks or yellow
+            patches on the leaf and stems. Heavy feeding causes the leaves to
+            curl at the edges before turning yellow and dying. The plants growth
+            can be severely restricted and the whole plant can die if the insect
+            is not controlled.
+          </Text>
+        </View>
+      );
+    } else if (
+      predict === "rice_blast" ||
+      predict === "RiceBlast" ||
+      predict === "RiceBlast\n" ||
+      predict === "rice_blast\n"
+    ) {
+      return (
+        <View style={{ marginLeft: 20, marginTop: 30, marginRight: 20 }}>
+          <Text
+            style={{
+              fontSize: 15,
+              fontFamily: FontFamily.urbanistMedium,
+              marginTop: 10,
+              textAlign: "left",
+            }}
+          >
+            Rice blast caused by the fungus Magnopothe oryzae, is generally
+            considered the most destructive disease of the rice . Rice blast is
+            named as leaf blast , nodel blast,panical blast or neck blast, based
+            on the part of the plant infected . A leaf blast infection can kill
+            seedings or plants up to the tillering stage. Rce blast occurs in
+            areas with low soil moisture, frequent and prolonged periods or rain
+            shower,and cool temperature in the daytime.
+          </Text>
+        </View>
+      );
+    }  else
       return (
         <View style={{ marginLeft: 13, marginTop: 30, marginRight: 20 }}>
           <Text
@@ -62,10 +125,31 @@ const View2 = ({ route }) => {
               fontFamily: FontFamily.urbanistSemibold,
             }}
           >
-            {predict}
+            Healthy
           </Text>
         </View>
       );
+  };
+
+  const TextArea = () => {
+    if (photo !== "") {
+
+  
+      return (
+
+        <View style={{ marginLeft: 13, marginTop: 30, marginRight: 20 }}>
+          <Text
+            style={{
+              fontSize: 17,
+              fontFamily: FontFamily.urbanistSemibold,
+            }}
+          >
+            {predict}
+            {diseaseData(predict)}
+          </Text>
+        </View>
+      );
+    
     }
   };
 
@@ -74,11 +158,11 @@ const View2 = ({ route }) => {
       return (<>
           <View style ={styles.btnContainer}>  
           
-        <TouchableOpacity style={styles.press3} onPress={del}>
+        <TouchableOpacity style={styles.press3} onPress={() => navigation.goBack()}>
           <LinearGradient
             style={[styles.groupChild1, styles.groupParentLayout1]}
             locations={[0, 1]}
-            colors={["#F31F1F", "#F2A9A9"]}
+            colors={["#5ebc00", "#bbff4d"]}
           />
 
           <Text
@@ -89,10 +173,10 @@ const View2 = ({ route }) => {
               { marginLeft: 10 },
             ]}
           >
-            Delete
+            Cancel
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.press3} onPress={() => navigation.goBack()}>
+        <TouchableOpacity style={styles.press3} onPress={del}>
         <LinearGradient
           style={[styles.groupChild1, styles.groupParentLayout1]}
           locations={[1, 1]}
@@ -107,7 +191,7 @@ const View2 = ({ route }) => {
             { marginLeft: 10 },
           ]}
         >
-          Cancel
+          Delete
         </Text>
       </TouchableOpacity>
       </View>
@@ -152,6 +236,8 @@ const View2 = ({ route }) => {
         source={require("../../../assets/bg3.png")}
         style={styles.landing}
       >
+        <ScrollView>
+        <View style={styles.container}>
         <View>
           <View style={{ marginLeft: 20, marginTop: 10 }}>
             <Text
@@ -193,6 +279,8 @@ const View2 = ({ route }) => {
 
           <TextArea />
         </View>
+        </View>
+     </ScrollView>
       </ImageBackground>
 
       <BottomSheet
@@ -242,6 +330,12 @@ const styles = StyleSheet.create({
     height: 25,
     textAlign: "left",
     color: Color.darkslategray_200,
+  },
+  container:{
+    height:850,
+    marginTop:10,
+    paddingBottom:50,
+    
   },
 
   btnContainer:{

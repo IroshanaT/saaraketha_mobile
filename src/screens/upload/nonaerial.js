@@ -150,7 +150,7 @@ const NonAerial = () => {
                   marginTop: 5,
                 }}
                 resizeMode="cover"
-                source={require("../../../assets/non1.png")}
+                source={require("../../../assets/heathy.jpg")}
               />
 
               <View style={{ marginLeft: 20, marginTop: 20, marginRight: 20 }}>
