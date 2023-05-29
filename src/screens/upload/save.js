@@ -29,6 +29,7 @@ const Save = ({ route }) => {
   const { params } = route;
   const { userId, uName } = useContext(AuthContext);
   const [discr, setDiscr] = useState("");
+  const [img, setImg] = useState("")
 
   const thi_text   = `
     Thrips damage is caused by the Stenchaetothrips biformis (Bagnall). Periods of dry weather favor the development of the rice thrips. No standing water in the rice fields encourages damage. These insects are present in all rice environments. In the tropics, the rice thrips becomes abundant in dry periods from July to September and January to March. In temperate areas, the insects migrate and hibernate on  graminaceous weeds during the winter season. Thrips damage normally hides underneath unopened leaves and feed on the young tissues. The feeding causes small sliver marks or yellow patches on the leaf and stems. Heavy feeding causes the leaves to curl at the edges before turning yellow and dying. The plants growth can be severely restricted and the whole plant can die if the insect is not controlled.
@@ -298,6 +299,8 @@ const Save = ({ route }) => {
     await uploadBytes(fileRef, blob);
     const downloadURL = await getDownloadURL(fileRef);
     setUr(downloadURL);
+    setImg(fileName)
+
 
     try {
       const subCollectionRef = collection(
@@ -343,9 +346,7 @@ const Save = ({ route }) => {
       border-color="green">
         
             <h2>${predict}</h2>
-            <img src=${
-              route.params.url
-            } alt="Italian Trulli" width="100%" height : "80px">
+            <img src=${img} alt="Italian Trulli" width="80px" height : "80px">
             <h4>${new Date().getDate()}</h4>
             <p>${discr}</p>
             </div>

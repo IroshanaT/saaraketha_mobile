@@ -85,7 +85,7 @@ const Home = () => {
 
         <TouchableOpacity
           style={[styles.groupView]}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => navigation.navigate("Inbox")}
         >
           <LinearGradient
             style={[styles.groupChild, styles.groupParentLayout]}
