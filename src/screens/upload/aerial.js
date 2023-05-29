@@ -80,6 +80,7 @@ const Aerial = () => {
         url: photoShow,
         pred: "RiceBlast",
       });
+      setPhotoShow(null);
     } else {
       await axios
         .post("http://172.173.192.159/areial", formData, {
@@ -94,6 +95,7 @@ const Aerial = () => {
         .catch((err) => {
           setErr("Error");
         });
+        setPhotoShow(null);
     }
   };
 
