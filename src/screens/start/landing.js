@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
 
   welcome: {
     marginLeft: -108.5,
-    top: 360,
+    top: 400,
     fontSize: 45,
     color: "#7bc700",
     textAlign: "center",
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   },
   toTheSaraketha: {
     marginLeft: -71,
-    top: 415,
+    top: 450,
     fontSize: FontSize.size_lg,
     color: "#7bc700",
   },
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
 
   revolutionizeYourRice: {
     marginLeft: -172.65,
-    top: 480,
+    top: 520,
     fontSize: FontSize.size_base,
     color: Color.darkslategray_200,
     width: 352,
@@ -150,13 +150,13 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: 120,
-    height: 120,
+    width: 140,
+    height: 140,
   },
 
   imageContainer: {
     alignItems: "center",
-    marginTop: 130,
+    marginTop: 160,
   },
 
   container2: {
