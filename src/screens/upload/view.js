@@ -140,15 +140,18 @@ const View2 = ({ route }) => {
   
       return (
 
-        <View style={{ marginLeft: 13, marginTop: 30, marginRight: 20 }}>
+        <View style={{ marginLeft: 13, marginTop: 30, marginRight: 20,}}>
           <Text
             style={{
+              
               fontSize: 17,
               fontFamily: FontFamily.urbanistSemibold,
             }}
           >
             {predict}
-            {diseaseData(predict)}
+          </Text>
+          <Text>
+          {diseaseData(predict)}
           </Text>
         </View>
       );
