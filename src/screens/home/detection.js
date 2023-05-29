@@ -23,128 +23,145 @@ const Detection = () => {
     >
       <ScrollView>
         <View style={styles.container}>
-      <View style={{ marginLeft: 20, marginTop: 10 }}>
-        <Text style={{ fontSize: 18, fontFamily: FontFamily.urbanistSemibold }}>
-          Disease Detection
-        </Text>
-      </View>
-      <View style={[styles.group]}>
-        <TouchableOpacity onPress={() => navigation.navigate("RealTimeHome")}>
-          <LinearGradient
-            style={[styles.groupChild, styles.groupParentLayout]}
-            locations={[0, 1]}
-            colors={["#5ebc00", "#bbff4d"]}
-          />
-          <Image
-            style={[styles.groupItem, styles.groupPosition]}
-            resizeMode="cover"
-            source={require("../../../assets/g7.png")}
-          />
-          <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
-            Real-time Disease Identification
-          </Text>
-        </TouchableOpacity>
+          <View style={{ marginLeft: 20, marginTop: 10 }}>
+            <Text
+              style={{ fontSize: 18, fontFamily: FontFamily.urbanistSemibold }}
+            >
+              Disease Detection
+            </Text>
+          </View>
+          <View style={[styles.group]}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("RealTimeHome")}
+            >
+              <LinearGradient
+                style={[styles.groupChild, styles.groupParentLayout]}
+                locations={[0, 1]}
+                colors={["#5ebc00", "#bbff4d"]}
+              />
+              <Image
+                style={[styles.groupItem, styles.groupPosition]}
+                resizeMode="cover"
+                source={require("../../../assets/g7.png")}
+              />
+              <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
+                Real-time Disease Identification
+              </Text>
+            </TouchableOpacity>
 
-        <TouchableOpacity
-          style={[styles.groupView]}
-          onPress={() => navigation.navigate("Upload")}
-        >
-          <LinearGradient
-            style={[styles.groupChild, styles.groupParentLayout]}
-            locations={[0, 1]}
-            colors={["#5ebc00", "#bbff4d"]}
-          />
-          <Image
-            style={[styles.groupItem, styles.groupPosition]}
-            resizeMode="cover"
-            source={require("../../../assets/g8.png")}
-          />
-          <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
-            Upload Image
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.groupView]}
-          onPress={() => navigation.navigate("ViewAll")}
-        >
-          <LinearGradient
-            style={[styles.groupChild, styles.groupParentLayout]}
-            locations={[0, 1]}
-            colors={["#5ebc00", "#bbff4d"]}
-          />
-          <Image
-            style={[styles.groupItem, styles.groupPosition]}
-            resizeMode="cover"
-            source={require("../../../assets/g6.png")}
-          />
-          <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
-            History
-          </Text>
-        </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.groupView]}
+              onPress={() => navigation.navigate("Upload")}
+            >
+              <LinearGradient
+                style={[styles.groupChild, styles.groupParentLayout]}
+                locations={[0, 1]}
+                colors={["#5ebc00", "#bbff4d"]}
+              />
+              <Image
+                style={[styles.groupItem, styles.groupPosition]}
+                resizeMode="cover"
+                source={require("../../../assets/g8.png")}
+              />
+              <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
+                Upload Image
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.groupView]}
+              onPress={() => navigation.navigate("ViewAll")}
+            >
+              <LinearGradient
+                style={[styles.groupChild, styles.groupParentLayout]}
+                locations={[0, 1]}
+                colors={["#5ebc00", "#bbff4d"]}
+              />
+              <Image
+                style={[styles.groupItem, styles.groupPosition]}
+                resizeMode="cover"
+                source={require("../../../assets/g6.png")}
+              />
+              <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
+                History
+              </Text>
+            </TouchableOpacity>
 
+            <View
+              style={[styles.groupView, { marginTop: 100 }]}
+              onPress={() => navigation.navigate("ViewAll")}
+            >
+              <LinearGradient
+                style={[styles.groupChild, styles.groupParentLayout2]}
+                locations={[0, 1]}
+                colors={["#FFFFFF", "#FFFFFF"]}
+              />
+              <Image
+                style={[styles.groupItem2, styles.groupPosition]}
+                resizeMode="cover"
+                source={require("../../../assets/non2.png")}
+              />
+              <Text
+                style={[
+                  styles.diseaseDetection,
+                  styles.ravinduTypo,
+                  { marginTop: 5 },
+                ]}
+              >
+                Healthy
+              </Text>
+            </View>
 
+            <View
+              style={[styles.groupView, { marginTop: 80 }]}
+              onPress={() => navigation.navigate("ViewAll")}
+            >
+              <LinearGradient
+                style={[styles.groupChild, styles.groupParentLayout2]}
+                locations={[0, 1]}
+                colors={["#FFFFFF", "#FFFFFF"]}
+              />
+              <Image
+                style={[styles.groupItem2, styles.groupPosition]}
+                resizeMode="cover"
+                source={require("../../../assets/non1.png")}
+              />
+              <Text
+                style={[
+                  styles.diseaseDetection,
+                  styles.ravinduTypo,
+                  { marginTop: 5 },
+                ]}
+              >
+                Thrips Damage
+              </Text>
+            </View>
 
-      
-        <View
-          style={[styles.groupView,{marginTop:100}]}
-          onPress={() => navigation.navigate("ViewAll")}
-        >
-          <LinearGradient
-            style={[styles.groupChild, styles.groupParentLayout2]}
-            locations={[0, 1]}
-            colors={["#FFFFFF", "#FFFFFF"]}
-          />
-          <Image
-            style={[styles.groupItem2, styles.groupPosition]}
-            resizeMode="cover"
-            source={require("../../../assets/non2.png")}
-          />
-          <Text style={[styles.diseaseDetection, styles.ravinduTypo, { marginTop: 5 }]}>
-            Healthy
-          </Text>
+            <View
+              style={[styles.groupView, { marginTop: 80 }]}
+              onPress={() => navigation.navigate("ViewAll")}
+            >
+              <LinearGradient
+                style={[styles.groupChild, styles.groupParentLayout2]}
+                locations={[0, 1]}
+                colors={["#FFFFFF", "#FFFFFF"]}
+              />
+              <Image
+                style={[styles.groupItem2, styles.groupPosition]}
+                resizeMode="cover"
+                source={require("../../../assets/dt.png")}
+              />
+              <Text
+                style={[
+                  styles.diseaseDetection,
+                  styles.ravinduTypo,
+                  { marginTop: 5 },
+                ]}
+              >
+                Rice Blast
+              </Text>
+            </View>
+          </View>
         </View>
-
-        <View
-          style={[styles.groupView,{marginTop:80}]}
-          onPress={() => navigation.navigate("ViewAll")}
-        >
-          <LinearGradient
-            style={[styles.groupChild, styles.groupParentLayout2]}
-            locations={[0, 1]}
-            colors={["#FFFFFF", "#FFFFFF"]}
-          />
-          <Image
-            style={[styles.groupItem2, styles.groupPosition]}
-            resizeMode="cover"
-            source={require("../../../assets/non1.png")}
-          />
-          <Text style={[styles.diseaseDetection, styles.ravinduTypo, { marginTop: 5 }]}>
-            Thrips Damage
-          </Text>
-        </View>
-
-
-        <View
-          style={[styles.groupView,{marginTop:80}]}
-          onPress={() => navigation.navigate("ViewAll")}
-        >
-          <LinearGradient
-            style={[styles.groupChild, styles.groupParentLayout2]}
-            locations={[0, 1]}
-            colors={["#FFFFFF", "#FFFFFF"]}
-          />
-          <Image
-            style={[styles.groupItem2, styles.groupPosition]}
-            resizeMode="cover"
-            source={require("../../../assets/dt.png")}
-          />
-          <Text style={[styles.diseaseDetection, styles.ravinduTypo, { marginTop: 5 }]}>
-            Rice Blast
-          </Text>
-        </View>
-
-      </View>
-      </View>
       </ScrollView>
     </ImageBackground>
   );
@@ -185,7 +202,6 @@ const styles = StyleSheet.create({
   groupItem2: {
     width: 49,
     height: 46,
-    
   },
   groupChild: {
     backgroundColor: "transparent",
@@ -301,11 +317,10 @@ const styles = StyleSheet.create({
     width: 32,
     top: 23,
   },
-  container:{
-    height:700,
-    marginTop:10,
-    paddingBottom:50,
-    
+  container: {
+    height: 700,
+    marginTop: 10,
+    paddingBottom: 50,
   },
 });
 

@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import MapView, { Marker, Heatmap, PROVIDER_GOOGLE } from "react-native-maps";
-import { StyleSheet, View, ActivityIndicator,ImageBackground } from "react-native";
+import {
+  StyleSheet,
+  View,
+  ActivityIndicator,
+  ImageBackground,
+} from "react-native";
 
 export default function HeatmapView({ route }) {
   const { data } = route.params;
@@ -11,8 +16,7 @@ export default function HeatmapView({ route }) {
   const API_KEY = "6196a3c39d7c6dae5c99a09d890c0e54";
 
   const fetch_wind = async () => {
-    const url =
-      `https://weatherbit-v1-mashape.p.rapidapi.com/forecast/3hourly?lat=${data.coordinate.latitude}&lon=${data.coordinate.longitude}`;
+    const url = `https://weatherbit-v1-mashape.p.rapidapi.com/forecast/3hourly?lat=${data.coordinate.latitude}&lon=${data.coordinate.longitude}`;
     const options = {
       method: "GET",
       headers: {
@@ -24,7 +28,7 @@ export default function HeatmapView({ route }) {
     try {
       const response = await fetch(url, options);
       const result = await response.json();
-      console.log("wind_speed : ",result.data[0].wind_spd);
+      console.log("wind_speed : ", result.data[0].wind_spd);
       setWindSpeed(result.data[0].wind_spd);
     } catch (error) {
       console.error(error);
@@ -56,61 +60,62 @@ export default function HeatmapView({ route }) {
       console.log(data.wind_speed);
       gaussian_plume(1000, 0, 10, 10, 5, data.wind_speed, 50, 20);
       setLoading(false);
-    },8000)
-    },[]);
+    }, 8000);
+  }, []);
 
   return (
     <ImageBackground
       source={require("../../../assets/bg3.png")}
-      style={styles.landing}>
-    <View style={styles.container}>
-      {!loading && (
-        <MapView
-        provider={PROVIDER_GOOGLE}
-          style={styles.map}
-          mapType={"hybrid"}
-          initialRegion={{
-            latitude: data.coordinate.latitude,
-            longitude: data.coordinate.longitude,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
-        >
-          <Marker
-            coordinate={{
+      style={styles.landing}
+    >
+      <View style={styles.container}>
+        {!loading && (
+          <MapView
+            provider={PROVIDER_GOOGLE}
+            style={styles.map}
+            mapType={"hybrid"}
+            initialRegion={{
               latitude: data.coordinate.latitude,
               longitude: data.coordinate.longitude,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
             }}
-          />
-          <Heatmap
-            points={heatmapData}
-            tracksViewChanges={false}
-            opacity={0.7}
-            radius={data.spread? data.spread:0}
-            gradient={{
-              colors: ["green", "yellow", "red"],
-              startPoints: [0.2, 0.7, 1],
-              colorMapSize: 200,
-            }}
-          />
-        </MapView>
-      )}
-      <View style={{top:200}}>
-      {loading && <ActivityIndicator size="large" color="#00ff00" />}
+          >
+            <Marker
+              coordinate={{
+                latitude: data.coordinate.latitude,
+                longitude: data.coordinate.longitude,
+              }}
+            />
+            <Heatmap
+              points={heatmapData}
+              tracksViewChanges={false}
+              opacity={0.7}
+              radius={50}
+              //radius={data.spread? data.spread:0}
+              gradient={{
+                colors: ["green", "yellow", "red"],
+                startPoints: [0.2, 0.7, 1],
+                colorMapSize: 200,
+              }}
+            />
+          </MapView>
+        )}
+        <View style={{ top: 300 }}>
+          {loading && <ActivityIndicator size="large" color="#00ff00" />}
+        </View>
       </View>
-    </View>
     </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-
   landing: {
     backgroundColor: "#edebeb",
     flex: 1,
     width: "100%",
     overflow: "hidden",
-    zIndex:-2,
+    zIndex: -2,
   },
   container: {
     flex: 1,
