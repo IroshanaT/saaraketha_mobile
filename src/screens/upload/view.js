@@ -72,7 +72,7 @@ const View2 = ({ route }) => {
               fontFamily: FontFamily.urbanistMedium,
               marginTop: 10,
               textAlign: "left",
-              flexWrap: "wrap",
+              
             
             }}
           >
@@ -106,7 +106,7 @@ const View2 = ({ route }) => {
               fontFamily: FontFamily.urbanistMedium,
               marginTop: 10,
               textAlign: "left",
-              flexWrap: "wrap",
+            
             }}
           >
             Rice blast caused by the fungus Magnopothe oryzae, is generally
@@ -136,8 +136,6 @@ const View2 = ({ route }) => {
 
   const TextArea = () => {
     if (photo !== "") {
-
-  
       return (
 
         <View style={{ marginLeft: 13, marginTop: 30, marginRight: 20,}}>
@@ -150,7 +148,11 @@ const View2 = ({ route }) => {
           >
             {predict}
           </Text>
-          <Text>
+          <Text style={{
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              marginTop:15,
+            }}>
           {diseaseData(predict)}
           </Text>
         </View>
@@ -164,7 +166,7 @@ const View2 = ({ route }) => {
       return (<>
           <View style ={styles.btnContainer}>  
           
-        <TouchableOpacity style={styles.press3} onPress={() => navigation.goBack()}>
+        <TouchableOpacity style={styles.press3} onPress={() => navigation.navigate("ViewAll")}>
           <LinearGradient
             style={[styles.groupChild1, styles.groupParentLayout1]}
             locations={[0, 1]}
@@ -282,7 +284,6 @@ const View2 = ({ route }) => {
               />
             </View>
           )}
-
           <TextArea />
         </View>
         </View>
