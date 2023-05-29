@@ -87,8 +87,18 @@ const Detection = () => {
               </Text>
             </TouchableOpacity>
 
+            <View style={[
+              styles.groupView,
+            {marginTop:80}
+          ]}>
+            <Text style={[styles.key2]}>
+            Recent searches...
+            </Text> 
+          </View>
+          <Divider/>
+
             <View
-              style={[styles.groupView, { marginTop: 100 }]}
+              style={[styles.groupView, { marginTop: 60 }]}
               onPress={() => navigation.navigate("ViewAll")}
             >
               <LinearGradient
@@ -99,20 +109,8 @@ const Detection = () => {
               <Image
                 style={[styles.groupItem2, styles.groupPosition]}
                 resizeMode="cover"
-                source={require("../../../assets/non2.png")}
+                source={require("../../../assets/heathy.jpg")}
               />
-
-          <View style={[
-            styles.ravinduTypo,
-            {marginTop:5, marginBottom:10}
-          ]}>
-            <Text>
-            Recent searches
-            </Text>
-
-          </View>
-          <Divider/>
-
               <Text
                 style={[
                   styles.diseaseDetection,
@@ -136,7 +134,7 @@ const Detection = () => {
               <Image
                 style={[styles.groupItem2, styles.groupPosition]}
                 resizeMode="cover"
-                source={require("../../../assets/non1.png")}
+                source={require("../../../assets/thrips.jpg")}
               />
               <Text
                 style={[
@@ -161,7 +159,7 @@ const Detection = () => {
               <Image
                 style={[styles.groupItem2, styles.groupPosition]}
                 resizeMode="cover"
-                source={require("../../../assets/dt.png")}
+                source={require("../../../assets/rice_blast.jpg")}
               />
               <Text
                 style={[
@@ -266,6 +264,15 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     fontFamily: FontFamily.urbanistRegular,
     textAlign: "left",
+  },
+  key2:{
+    lineHeight: 20,
+    left: 15,
+    color: Color.darkslategray_100,
+    position: "absolute",
+    top: 23,
+    fontSize: FontSize.size_lg,
+    fontFamily: FontFamily.urbanistSemibold,
   },
   featuredTag: {
     top: 321,
