@@ -72,6 +72,8 @@ const View2 = ({ route }) => {
               fontFamily: FontFamily.urbanistMedium,
               marginTop: 10,
               textAlign: "left",
+              flexWrap: "wrap",
+            
             }}
           >
             Thrips damage is caused by the Stenchaetothrips biformis (Bagnall).
@@ -104,6 +106,7 @@ const View2 = ({ route }) => {
               fontFamily: FontFamily.urbanistMedium,
               marginTop: 10,
               textAlign: "left",
+              flexWrap: "wrap",
             }}
           >
             Rice blast caused by the fungus Magnopothe oryzae, is generally
@@ -310,7 +313,7 @@ const styles = StyleSheet.create({
     top: 0,
   },
   groupParentLayout1: {
-    height: 58,
+    height: 54,
     width: 160,
     left: 0,
   },
@@ -358,7 +361,7 @@ const styles = StyleSheet.create({
     top: 0,
   },
   groupParentLayout: {
-    height: 58,
+    height: 5,
     width: 200,
     left: 0,
   },
