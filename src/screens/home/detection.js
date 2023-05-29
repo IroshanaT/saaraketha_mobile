@@ -9,6 +9,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
+import {Divider} from 'react-native-paper'
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/core";
 import { FontFamily, FontSize, Color, Border } from "../../../GlobalStyles";
@@ -100,6 +101,18 @@ const Detection = () => {
                 resizeMode="cover"
                 source={require("../../../assets/non2.png")}
               />
+
+          <View style={[
+            styles.ravinduTypo,
+            {marginTop:5, marginBottom:10}
+          ]}>
+            <Text>
+            Recent searches
+            </Text>
+
+          </View>
+          <Divider/>
+
               <Text
                 style={[
                   styles.diseaseDetection,

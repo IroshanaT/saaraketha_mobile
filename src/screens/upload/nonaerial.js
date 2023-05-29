@@ -386,7 +386,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   container:{
-    height:700,
+    height:800,
     marginTop:10,
     paddingBottom:50, 
   },
