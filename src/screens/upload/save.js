@@ -242,7 +242,7 @@ const Save = ({ route }) => {
               textAlign: "left",
             }}
           >
-            Rice blast caused by the fungus Magnopothe oryzae , is generally
+            Rice blast caused by the fungus <Text style={{fontWeight:500}}>Magnopothe oryzae</Text>, is generally
             considered the most destructive disease of the rice . Rice blast is
             named as leaf blast , nodel blast,panical blast or neck blast, based
             on the part of the plant infected . A leaf blast infection can kill
