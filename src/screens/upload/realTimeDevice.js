@@ -11,7 +11,7 @@ export default function RealTimeDevice() {
   return (
     <SafeAreaProvider>
       <View style={styles.view_container}>
-        {/* <VideoComponent /> */}
+        <VideoComponent />
         <Iot_bottom_card />
       </View>
     </SafeAreaProvider>
