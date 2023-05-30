@@ -44,6 +44,9 @@ const NonAerial = () => {
   };
 
   const camera = async () => {
+    const permissions = 'Permissions.CAMERA';
+    const { status } = await ImagePicker.requestCameraPermissionsAsync(permissions);
+    if (status == 'granted') {
     let result = await ImagePicker.launchCameraAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: false,
@@ -58,7 +61,8 @@ const NonAerial = () => {
     let localUri = result.assets[0].uri;
     setPhotoShow(localUri);
     setFlagCamera(5);
-  };
+  }
+};
 
   const dicardImage = () => {
     setPhotoShow(null);
