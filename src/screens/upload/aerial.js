@@ -18,6 +18,8 @@ import * as ImagePicker from "expo-image-picker";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/core";
 
+
+
 const Aerial = () => {
   const bottomSheetRef = useRef(null);
   const navigation = useNavigation();
@@ -46,6 +48,9 @@ const Aerial = () => {
   };
 
   const camera = async () => {
+    const permissions = 'Permissions.CAMERA';
+    const { status } = await ImagePicker.requestCameraPermissionsAsync(permissions);
+    if (status == 'granted') {
     let result = await ImagePicker.launchCameraAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: false,
@@ -60,7 +65,8 @@ const Aerial = () => {
     let localUri = result.assets[0].uri;
     setPhotoShow(localUri);
     setFlagCamera(5);
-  };
+  }
+};
 
   const dicardImage = () => {
     setPhotoShow(null);
@@ -488,5 +494,4 @@ const styles = StyleSheet.create({
     left: "18%",
   },
 });
-
 export default Aerial;

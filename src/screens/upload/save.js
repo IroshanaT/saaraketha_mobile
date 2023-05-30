@@ -32,32 +32,46 @@ const Save = ({ route }) => {
   const [img, setImg] = useState("")
 
   const thi_text   = `
-    Thrips damage is caused by the Stenchaetothrips biformis (Bagnall). Periods of dry weather favor the development of the rice thrips. No standing water in the rice fields encourages damage. These insects are present in all rice environments. In the tropics, the rice thrips becomes abundant in dry periods from July to September and January to March. In temperate areas, the insects migrate and hibernate on  graminaceous weeds during the winter season. Thrips damage normally hides underneath unopened leaves and feed on the young tissues. The feeding causes small sliver marks or yellow patches on the leaf and stems. Heavy feeding causes the leaves to curl at the edges before turning yellow and dying. The plants growth can be severely restricted and the whole plant can die if the insect is not controlled.
+    <p>Thrips damage is caused by the Stenchaetothrips biformis (Bagnall). Periods of dry weather favor the development of the rice thrips. No standing water in the rice fields encourages damage. These insects are present in all rice environments. In the tropics, the rice thrips becomes abundant in dry periods from July to September and January to March. In temperate areas, the insects migrate and hibernate on  graminaceous weeds during the winter season. Thrips damage normally hides underneath unopened leaves and feed on the young tissues. The feeding causes small sliver marks or yellow patches on the leaf and stems. Heavy feeding causes the leaves to curl at the edges before turning yellow and dying. The plants growth can be severely restricted and the whole plant can die if the insect is not controlled. The thrips also transmit the rice tungro virus disease.</p>
+      <br>
+    <h5>Symptoms </h5>
+    <br>
+    <ul>
+    <li>damaged leaves have silvery streaks or yellowish patches.</li>
+    <li>translucent epidermis becomes visible on damaged area.</li>
+    <li> leaves curled from the margin to the middle.</li>
+    <li>leaf tips wither off when severely infested.</li>
+    <li>unfilled grains at panicle stage</li>
+    </ul>
 
-    Symptoms 
-    damaged leaves have silvery streaks or yellowish patches.
-    translucent epidermis becomes visible on damaged area.
-    leaves curled from the margin to the middle.
-    leaf tips wither off when severely infested.
-    unfilled grains at panicle stage
+    <br>
 
-    Recommended pesticides 
-    Application of  phorate 10 G @ 75g or carbofuron 3 G @ 1.25kg / seed bed (300 sq mt area) followed by light  irrigation
+    <h5>Recommended pesticides </h5>
+    <br>
+    <ul>
+    <li>Application of  phorate 10 G @ 75g or carbofuron 3 G @ 1.25kg / seed bed (300 sq mt area) followed by light  irrigation</li>
 
-    Apply endosulfan 35EC @ 1.3 lit./ha or monocrotophos 36EC @1.3 lit./ha 15 days after transplanting when thrips population reaches 10-15 (adults+larvae) / hill.
+    <li>Apply endosulfan 35EC @ 1.3 lit./ha or monocrotophos 36EC @1.3 lit./ha 15 days after transplanting when thrips population reaches 10-15 (adults+larvae) / hill.</li>
 
-    Spray monocrotophos 36 SL 1.3ml/l 
+    <li>Spray monocrotophos 36 SL 1.3ml/l </li>
+    </ul>
 
+    <br>
+    <br>
+    <h5>Early Disease Management Steps </h5>
+    <br>
+    <ul>
+    <>Use resistant varieties.
 
-    Early Disease Management Steps 
-    Use resistant varieties.
+    <li>Contact your local agriculture office for an up-to-date list of available varieties.</li>
+    <li>Flood to submerge the infested field for two days.</li>
+    <li>Encourage biological control agents: predatory thrips, coccinellid beetles, anthocorid bugs, and staphylinid beetles
+    
+    </ul>
+  
+    `;
 
-    Contact your local agriculture office for an up-to-date list of available varieties.
-    Flood to submerge the infested field for two days.
-    Encourage biological control agents: predatory thrips, coccinellid beetles, anthocorid bugs, and staphylinid beetles
-  `;
-
-  const blast_text = `Rice blast caused by the fungus Magnopothe oryzae , is generally considered the most destructive disease of the rice  . Rice blast is named as leaf blast , nodel blast,panical blast or neck blast, based on the part of the plant infected . A leaf blast infection can kill seedings or plants up to the tillering stage. Rce blast occurs in areas with low soil moisture, frequent and prolonged periods or rain shower,and cool temperature in the daytime.
+  const blast_text = `Rice blast caused by the fungus Magnopothe oryzae , is generally considered the most destructive disease of the rice  . Rice blast is named as leaf blast , nodel blast,panical blast or neck blast, based on the part of the plant infected . A leaf blast infection can kill seedings or plants up to the tillering stage. Rce blast occurs in areas with low soil moisture, frequent and prolonged periods or rain shower,and cool temperature in the daytime.</li>
 
   Symptoms
   
