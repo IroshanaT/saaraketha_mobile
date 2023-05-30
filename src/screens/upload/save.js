@@ -29,65 +29,89 @@ const Save = ({ route }) => {
   const { params } = route;
   const { userId, uName } = useContext(AuthContext);
   const [discr, setDiscr] = useState("");
+  const [img, setImg] = useState("")
 
   const thi_text   = `
-    Thrips damage is caused by the Stenchaetothrips biformis (Bagnall). Periods of dry weather favor the development of the rice thrips. No standing water in the rice fields encourages damage. These insects are present in all rice environments. In the tropics, the rice thrips becomes abundant in dry periods from July to September and January to March. In temperate areas, the insects migrate and hibernate on  graminaceous weeds during the winter season. Thrips damage normally hides underneath unopened leaves and feed on the young tissues. The feeding causes small sliver marks or yellow patches on the leaf and stems. Heavy feeding causes the leaves to curl at the edges before turning yellow and dying. The plants growth can be severely restricted and the whole plant can die if the insect is not controlled.
+    <p>Thrips damage is caused by the Stenchaetothrips biformis (Bagnall). Periods of dry weather favor the development of the rice thrips. No standing water in the rice fields encourages damage. These insects are present in all rice environments. In the tropics, the rice thrips becomes abundant in dry periods from July to September and January to March. In temperate areas, the insects migrate and hibernate on  graminaceous weeds during the winter season. Thrips damage normally hides underneath unopened leaves and feed on the young tissues. The feeding causes small sliver marks or yellow patches on the leaf and stems. Heavy feeding causes the leaves to curl at the edges before turning yellow and dying. The plants growth can be severely restricted and the whole plant can die if the insect is not controlled. The thrips also transmit the rice tungro virus disease.</p>
+      <br>
+    <h5>Symptoms </h5>
+    <br>
+    <ul>
+    <li>damaged leaves have silvery streaks or yellowish patches.</li>
+    <li>translucent epidermis becomes visible on damaged area.</li>
+    <li> leaves curled from the margin to the middle.</li>
+    <li>leaf tips wither off when severely infested.</li>
+    <li>unfilled grains at panicle stage</li>
+    </ul>
 
-    Symptoms 
-    damaged leaves have silvery streaks or yellowish patches.
-    translucent epidermis becomes visible on damaged area.
-    leaves curled from the margin to the middle.
-    leaf tips wither off when severely infested.
-    unfilled grains at panicle stage
+    <br>
 
-    Recommended pesticides 
-    Application of  phorate 10 G @ 75g or carbofuron 3 G @ 1.25kg / seed bed (300 sq mt area) followed by light  irrigation
+    <h5>Recommended pesticides </h5>
+    <br>
+    <ul>
+    <li>Application of  phorate 10 G @ 75g or carbofuron 3 G @ 1.25kg / seed bed (300 sq mt area) followed by light  irrigation</li>
 
-    Apply endosulfan 35EC @ 1.3 lit./ha or monocrotophos 36EC @1.3 lit./ha 15 days after transplanting when thrips population reaches 10-15 (adults+larvae) / hill.
+    <li>Apply endosulfan 35EC @ 1.3 lit./ha or monocrotophos 36EC @1.3 lit./ha 15 days after transplanting when thrips population reaches 10-15 (adults+larvae) / hill.</li>
 
-    Spray monocrotophos 36 SL 1.3ml/l 
+    <li>Spray monocrotophos 36 SL 1.3ml/l </li>
+    </ul>
 
+    <br>
+    <br>
+    <h5>Early Disease Management Steps </h5>
+    <br>
+    <ul>
+    <>Use resistant varieties.
 
-    Early Disease Management Steps 
-    Use resistant varieties.
-
-    Contact your local agriculture office for an up-to-date list of available varieties.
-    Flood to submerge the infested field for two days.
-    Encourage biological control agents: predatory thrips, coccinellid beetles, anthocorid bugs, and staphylinid beetles
-  `;
-
-  const blast_text = `Rice blast caused by the fungus Magnopothe oryzae , is generally considered the most destructive disease of the rice  . Rice blast is named as leaf blast , nodel blast,panical blast or neck blast, based on the part of the plant infected . A leaf blast infection can kill seedings or plants up to the tillering stage. Rce blast occurs in areas with low soil moisture, frequent and prolonged periods or rain shower,and cool temperature in the daytime.
-
-  Symptoms
+    <li>Contact your local agriculture office for an up-to-date list of available varieties.</li>
+    <li>Flood to submerge the infested field for two days.</li>
+    <li>Encourage biological control agents: predatory thrips, coccinellid beetles, anthocorid bugs, and staphylinid beetles
+    
+    </ul>
   
-  initial symptoms appear as white to gray-green lesions or spots, with dark green border  
+    `;
+
+  const blast_text = `<p>Rice blast caused by the fungus Magnopothe oryzae , 
+  is generally considered the most destructive disease of the rice  . 
+  Rice blast is named as leaf blast , nodel blast,panical blast or neck blast,
+   based on the part of the plant infected . A leaf blast infection can kill seedings or 
+   plants up to the tillering stage. 
+   Rce blast occurs in areas with low soil moisture, frequent and prolonged periods or rain shower,
+   and cool temperature in the daytime.</p>
+   <br>
+   <h5>Symptoms </h5>
+   <ul>
+  <li>initial symptoms appear as white to gray-green lesions or spots, with dark green border</li> 
   
-  Older lesions on the leaves are elliptical or spindle-shaped and whitish to Gary centers with red to brownish or necrotic border.
+  <li>Older lesions on the leaves are elliptical or spindle-shaped and whitish to Gary centers with red to brownish or necrotic border.</li>
   
-  Some resemble diamond shape, wide in the center and pointed toward either ends.
+  <li>Some resemble diamond shape, wide in the center and pointed toward either ends.</li>
   
-  Lesions can enlarge and coalesce, rowing together kill the entire leaves.
+  <li>Lesions can enlarge and coalesce, rowing together kill the entire leaves.</li>
+  </ul>
+
+<h5>Recommended pesticides </h5>
   
-  Recommended Pesticides 
+  <li>Tebuconazole 250g/I EC - dissolve 10 ml in 16 l of water</li> 
   
-  Tebuconazole 250g/I EC - dissolve 10 ml in 16 l of water 
+  <li>Isoprothiolane 400g/I EC - dissolve 20 ml in166 1 of water </li>
   
-  Isoprothiolane 400g/I EC - dissolve 20 ml in166 1 of water 
-  
-  Carbendazim 50% WP/WG - dissolve 11g/ 11 ml in 16 l of water  
+  <li>Carbendazim 50% WP/WG - dissolve 11g/ 11 ml in 16 l of water </li> 
    
   
-  Early disease management steps 
+  <h5>Early disease management steps</h5> 
+  <ul>
+  <li>Use of resistant varieties (Bg403, Bg 406, Bg 366, Bg 359, Bw 361 , Bg 250 )</li>
   
-  Use of resistant varieties (Bg403, Bg 406, Bg 366, Bg 359, Bw 361 , Bg 250 )
   
+  <li>Used of certified seed paddy free from the disease<li>
   
-  Used of certified seed paddy free from the disease
+  <li>Addition of burnt paddy husk ( 250 kg per acre) to the soil during land preparation.</li>
   
-  Addition of burnt paddy husk ( 250 kg per acre) to the soil during land preparation.
+  <li>Abstain addition of disease infected straw.</li>
+  <ul>
+  `;
   
-  Abstain addition of disease infected straw.`;
-
   useEffect(() => {
     if (params === undefined) {
       navigation.navigate("Upload");
@@ -241,7 +265,7 @@ const Save = ({ route }) => {
               textAlign: "left",
             }}
           >
-            Rice blast caused by the fungus Magnopothe oryzae , is generally
+            Rice blast caused by the fungus Magnopothe oryzae, is generally
             considered the most destructive disease of the rice . Rice blast is
             named as leaf blast , nodel blast,panical blast or neck blast, based
             on the part of the plant infected . A leaf blast infection can kill
@@ -298,6 +322,8 @@ const Save = ({ route }) => {
     await uploadBytes(fileRef, blob);
     const downloadURL = await getDownloadURL(fileRef);
     setUr(downloadURL);
+    setImg(fileName)
+
 
     try {
       const subCollectionRef = collection(
@@ -343,9 +369,7 @@ const Save = ({ route }) => {
       border-color="green">
         
             <h2>${predict}</h2>
-            <img src=${
-              route.params.url
-            } alt="Italian Trulli" width="100%" height : "80px">
+            <img src=${img} alt="Italian Trulli" width="80px" height : "80px">
             <h4>${new Date().getDate()}</h4>
             <p>${discr}</p>
             </div>
@@ -376,9 +400,10 @@ const Save = ({ route }) => {
         style={styles.landing}
       >
         <Provider>
-          <ScrollView>
             <View>
               <Portal>
+                <ScrollView>
+                <View style={styles.container}>
                 <View style={{ marginLeft: 20, marginTop: 10 }}>
                   <Text
                     style={{
@@ -417,9 +442,12 @@ const Save = ({ route }) => {
                       source={{ uri: photo }}
                     />
                   </View>
+             
                 )}
 
                 <TextArea />
+                </View>
+                </ScrollView>
                 <Dialog
                   visible={visible}
                   onDismiss={hideDialog}
@@ -496,7 +524,6 @@ const Save = ({ route }) => {
                 </Dialog>
               </Portal>
             </View>
-          </ScrollView>
         </Provider>
       </ImageBackground>
       <BottomSheet
@@ -538,6 +565,12 @@ const styles = StyleSheet.create({
     fontSize: FontSize.size_mini,
     textAlign: "left",
     position: "absolute",
+  },
+  container:{
+    height:800,
+    marginTop:10,
+    paddingBottom:50,
+    
   },
   diseaseDetection1: {
     top: 16,

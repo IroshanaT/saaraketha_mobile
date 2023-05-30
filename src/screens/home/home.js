@@ -79,13 +79,13 @@ const Home = () => {
             source={require("../../../assets/g2.png")}
           />
           <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
-            Rice Variety Selection
+            Selection & Recommendation
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={[styles.groupView]}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => navigation.navigate("Inbox")}
         >
           <LinearGradient
             style={[styles.groupChild, styles.groupParentLayout]}
@@ -98,7 +98,7 @@ const Home = () => {
             source={require("../../../assets/g1.png")}
           />
           <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
-            Crowd Source
+            Crowdsource
           </Text>
         </TouchableOpacity>
 
@@ -106,7 +106,7 @@ const Home = () => {
           <View style={styles.rectangleViewShadowBox} />
           <Text style={[styles.key, styles.keyTypo]}>What’s New</Text>
           <Text style={[styles.key1, styles.keyPosition]}>
-            View Saaraketha's upcoming exciting features!
+            View Saraketha's upcoming exciting features !
           </Text>
           <View style={[styles.featuredTagItem, styles.groupChild2Layout]} />
           <Text style={[styles.text, styles.keyTypo]}>⚡️</Text>
@@ -116,7 +116,7 @@ const Home = () => {
           <View style={styles.rectangleViewShadowBox} />
           <Text style={[styles.key, styles.keyTypo]}>Upgrade to pro</Text>
           <Text style={[styles.key1, styles.keyPosition]}>
-            Experience Saaraketha's premium features!
+            Experience Saraketha's premium features !
           </Text>
           <View style={[styles.rectangleParent3, styles.groupChild2Layout]}>
             <LinearGradient

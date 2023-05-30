@@ -4,6 +4,7 @@ import {
   Text,
   ImageBackground,
   StyleSheet,
+  Image,
   TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/core";
@@ -31,6 +32,12 @@ const LandingScreen = () => {
       source={require("../../../assets/bg2.png")}
       style={styles.landing}
     >
+      <View style={styles.imageContainer}>
+      <Image
+          source={require("../../../assets/icon.png")}
+          style={styles.image}
+        />
+      </View>
       <Text style={styles.welcome}>{`WELCOME `}</Text>
       <Text style={[styles.toTheSaraketha, styles.toTheSarakethaTypo]}>
         To The Saraketha
@@ -41,13 +48,6 @@ const LandingScreen = () => {
       >{`Revolutionize your rice production with our 
 cutting-edge AI-powered solution for real-time detection and prevention of diseases and pets `}</Text>
 
-      <View style={styles.container}>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button2} onPress={handleClick}>
-                      <Text style={styles.buttonText}>{lan}</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
 
       <View style={styles.container2}>
         <View style={styles.buttonContainer2}>
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
 
   welcome: {
     marginLeft: -108.5,
-    top: 315,
+    top: 400,
     fontSize: 45,
     color: "#7bc700",
     textAlign: "center",
@@ -92,9 +92,9 @@ const styles = StyleSheet.create({
   },
   toTheSaraketha: {
     marginLeft: -71,
-    top: 364,
+    top: 450,
     fontSize: FontSize.size_lg,
-    color: Color.darkslategray_100,
+    color: "#7bc700",
   },
   groupChild: {
     height: 37,
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
 
   revolutionizeYourRice: {
     marginLeft: -172.65,
-    top: 442,
+    top: 520,
     fontSize: FontSize.size_base,
     color: Color.darkslategray_200,
     width: 352,
@@ -147,6 +147,16 @@ const styles = StyleSheet.create({
   buttonContainer: {
     alignItems: "center",
     marginTop: 70,
+  },
+
+  image: {
+    width: 120,
+    height: 120,
+  },
+
+  imageContainer: {
+    alignItems: "center",
+    marginTop: 160,
   },
 
   container2: {

@@ -4,10 +4,13 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Button } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons"; // Import MaterialCommunityIcons
 import { styles } from "../../../styles/style";
+import { useNavigation } from '@react-navigation/native';
 
 const { width } = Dimensions.get("window");
 
 const Button6 = () => {
+  const navigation = useNavigation();
+
   return (
     <LinearGradient
       colors={["#F31F1F", "#F2A9A9"]}
@@ -27,7 +30,7 @@ const Button6 = () => {
         mode="contained"
         contentStyle={{ justifyContent: "center" }} // Align content to the left
         labelStyle={{ color: "white", fontSize: 18 }} // Change text color
-        onPress={() => console.log("Button pressed")}
+        onPress={() => navigation.goBack()}
       >
         Stop Live
       </Button>

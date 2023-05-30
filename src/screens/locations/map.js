@@ -44,6 +44,10 @@ const Map = ({ route }) => {
 
   //const IP = "http://192.168.1.11:8000";
 
+  const onRegionChange = (region) => {
+    console.log(region);
+  };
+
   const getSpraySignal = async () => {
     try {
       const response = await fetch(`${IP}/spray`);
@@ -55,7 +59,6 @@ const Map = ({ route }) => {
   };
 
   const onpressfunction = (data) => {
-    console.log(data.coordinate.latitude);
     setSelecLocation(data);
     toggleBottomNavigationView();
   };
@@ -165,11 +168,14 @@ const Map = ({ route }) => {
           initialRegion={{
             // latitude: 7.4867,
             // longitude: 80.3604,
-            latitude: status == "Initial" ?  7.4867 : InboxData.coordinate.latitude,
-            longitude: status == "Initial" ? 80.3604 : InboxData.coordinate.longitude,
+            //latitudeDelta: 0.0122,
+            //longitudeDelta: 0.0121,
 
-            latitudeDelta: 0.0122,
-            longitudeDelta: 0.0121,
+            latitude: status == "Initial" ?  7.676390 : InboxData.coordinate.latitude,
+            longitude: status == "Initial" ? 80.648081 : InboxData.coordinate.longitude,
+
+            latitudeDelta: 4.90340,
+            longitudeDelta: 3.14236,
           }}
         >
           {!loading &&
@@ -193,7 +199,7 @@ const Map = ({ route }) => {
           onBackButtonPress={toggleBottomNavigationView}
           onBackdropPress={toggleBottomNavigationView}
         >
-          <View style={[styles.bottomNavigationView, { height: "73%" }]}>
+          <View style={[styles.bottomNavigationView, { height: "93%" }]}>
             <MaterialCommunityIcons
               name="map-marker"
               size={60}
@@ -232,7 +238,7 @@ const Map = ({ route }) => {
                   colors={["#5ebc00", "#bbff4d"]}
                 />
                 <Text style={[styles.diseaseDetection, styles.ravinduTypo]}>
-                  Calculate Dispersionr
+                  Calculate Dispersion
                 </Text>
               </TouchableOpacity>
               <View style={{ marginTop: 20 }}>

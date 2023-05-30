@@ -44,6 +44,9 @@ const NonAerial = () => {
   };
 
   const camera = async () => {
+    const permissions = 'Permissions.CAMERA';
+    const { status } = await ImagePicker.requestCameraPermissionsAsync(permissions);
+    if (status == 'granted') {
     let result = await ImagePicker.launchCameraAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: false,
@@ -58,7 +61,8 @@ const NonAerial = () => {
     let localUri = result.assets[0].uri;
     setPhotoShow(localUri);
     setFlagCamera(5);
-  };
+  }
+};
 
   const dicardImage = () => {
     setPhotoShow(null);
@@ -150,7 +154,7 @@ const NonAerial = () => {
                   marginTop: 5,
                 }}
                 resizeMode="cover"
-                source={require("../../../assets/non1.png")}
+                source={require("../../../assets/heathy.jpg")}
               />
 
               <View style={{ marginLeft: 20, marginTop: 20, marginRight: 20 }}>
@@ -386,7 +390,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   container:{
-    height:700,
+    height:800,
     marginTop:10,
     paddingBottom:50, 
   },
