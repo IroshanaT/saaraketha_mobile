@@ -149,6 +149,8 @@ const View2 = ({ route }) => {
             {predict}
           </Text>
           <Text style={{
+              flexDirection: 'row',
+              flexWrap: 'wrap',
               marginTop:15,
             }}>
           {diseaseData(predict)}
