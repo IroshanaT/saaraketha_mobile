@@ -71,38 +71,47 @@ const Save = ({ route }) => {
   
     `;
 
-  const blast_text = `Rice blast caused by the fungus Magnopothe oryzae , is generally considered the most destructive disease of the rice  . Rice blast is named as leaf blast , nodel blast,panical blast or neck blast, based on the part of the plant infected . A leaf blast infection can kill seedings or plants up to the tillering stage. Rce blast occurs in areas with low soil moisture, frequent and prolonged periods or rain shower,and cool temperature in the daytime.</li>
+  const blast_text = `<p>Rice blast caused by the fungus Magnopothe oryzae , 
+  is generally considered the most destructive disease of the rice  . 
+  Rice blast is named as leaf blast , nodel blast,panical blast or neck blast,
+   based on the part of the plant infected . A leaf blast infection can kill seedings or 
+   plants up to the tillering stage. 
+   Rce blast occurs in areas with low soil moisture, frequent and prolonged periods or rain shower,
+   and cool temperature in the daytime.</p>
+   <br>
+   <h5>Symptoms </h5>
+   <ul>
+  <li>initial symptoms appear as white to gray-green lesions or spots, with dark green border</li> 
+  
+  <li>Older lesions on the leaves are elliptical or spindle-shaped and whitish to Gary centers with red to brownish or necrotic border.</li>
+  
+  <li>Some resemble diamond shape, wide in the center and pointed toward either ends.</li>
+  
+  <li>Lesions can enlarge and coalesce, rowing together kill the entire leaves.</li>
+  </ul>
 
-  Symptoms
+<h5>Recommended pesticides </h5>
   
-  initial symptoms appear as white to gray-green lesions or spots, with dark green border  
+  <li>Tebuconazole 250g/I EC - dissolve 10 ml in 16 l of water</li> 
   
-  Older lesions on the leaves are elliptical or spindle-shaped and whitish to Gary centers with red to brownish or necrotic border.
+  <li>Isoprothiolane 400g/I EC - dissolve 20 ml in166 1 of water </li>
   
-  Some resemble diamond shape, wide in the center and pointed toward either ends.
-  
-  Lesions can enlarge and coalesce, rowing together kill the entire leaves.
-  
-  Recommended Pesticides 
-  
-  Tebuconazole 250g/I EC - dissolve 10 ml in 16 l of water 
-  
-  Isoprothiolane 400g/I EC - dissolve 20 ml in166 1 of water 
-  
-  Carbendazim 50% WP/WG - dissolve 11g/ 11 ml in 16 l of water  
+  <li>Carbendazim 50% WP/WG - dissolve 11g/ 11 ml in 16 l of water </li> 
    
   
-  Early disease management steps 
+  <h5>Early disease management steps</h5> 
+  <ul>
+  <li>Use of resistant varieties (Bg403, Bg 406, Bg 366, Bg 359, Bw 361 , Bg 250 )</li>
   
-  Use of resistant varieties (Bg403, Bg 406, Bg 366, Bg 359, Bw 361 , Bg 250 )
   
+  <li>Used of certified seed paddy free from the disease<li>
   
-  Used of certified seed paddy free from the disease
+  <li>Addition of burnt paddy husk ( 250 kg per acre) to the soil during land preparation.</li>
   
-  Addition of burnt paddy husk ( 250 kg per acre) to the soil during land preparation.
+  <li>Abstain addition of disease infected straw.</li>
+  <ul>
+  `;
   
-  Abstain addition of disease infected straw.`;
-
   useEffect(() => {
     if (params === undefined) {
       navigation.navigate("Upload");
